@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="d0crf0h6" jpegQuality="80" compressPNG="true">
+  <resources>
+    <component id="iuic0" name="Main.xml" path="/" exported="true"/>
+    <image id="iuic1" name="btn_juese.png" path="/Images/"/>
+    <component id="iuic2" name="BtnRole.xml" path="/Components/"/>
+  </resources>
+  <publish name="UIMain" path="..\client\Assets\GameResources\UI\&amp;UIMain"/>
+</packageDescription>
