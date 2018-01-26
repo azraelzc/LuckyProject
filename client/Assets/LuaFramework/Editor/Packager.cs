@@ -36,7 +36,7 @@ public class Packager {
 #if UNITY_5
         target = BuildTarget.iOS;
 #else
-        target = BuildTarget.iPhone;
+        target = BuildTarget.iOS;
 #endif
         BuildAssetResource(target);
     }
@@ -275,12 +275,12 @@ public class Packager {
         if (Application.platform == RuntimePlatform.WindowsEditor) {
             isWin = true;
             luaexe = "luajit.exe";
-            args = "-b " + srcFile + " " + outFile;
+            args = "-b -g " + srcFile + " " + outFile;
             exedir = AppDataPath.Replace("assets", "") + "LuaEncoder/luajit/";
         } else if (Application.platform == RuntimePlatform.OSXEditor) {
             isWin = false;
             luaexe = "./luajit";
-            args = "-b " + srcFile + " " + outFile;
+            args = "-b -g " + srcFile + " " + outFile;
             exedir = AppDataPath.Replace("assets", "") + "LuaEncoder/luajit_mac/";
         }
         Directory.SetCurrentDirectory(exedir);
