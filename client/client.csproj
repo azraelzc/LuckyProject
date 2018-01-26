@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6439B0B6-C827-AC16-CD69-C4C5DF2BB0A7}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp.dll</AssemblyName>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
@@ -310,6 +310,46 @@
     <Compile Include="Assets\LuaFramework\ToLua\Core\ToLua.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Core\TypeChecker.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Core\TypeTraits.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\01_HelloWorld\HelloWorld.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\02_ScriptsFromFile\ScriptsFromFile.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\03_CallLuaFunction\CallLuaFunction.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\04_AccessingLuaVariables\AccessingLuaVariables.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\05_LuaCoroutine\TestCoroutine.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\06_LuaCoroutine2\TestCoroutine2.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\07_LuaThread\TestLuaThread.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\08_AccessingArray\AccessingArray.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\09_Dictionary\System_Collections_Generic_Dictionary_int_TestAccountWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\09_Dictionary\System_Collections_Generic_Dictionary_int_TestAccount_KeyCollectionWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\09_Dictionary\System_Collections_Generic_Dictionary_int_TestAccount_ValueCollectionWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\09_Dictionary\System_Collections_Generic_KeyValuePair_int_TestAccountWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\09_Dictionary\TestAccountWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\09_Dictionary\UseDictionary.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\10_Enum\AccessingEnum.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\11_Delegate\TestDelegate.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\11_Delegate\TestEventListener.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\11_Delegate\TestEventListenerWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\12_GameObject\TestGameObject.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\13_CustomLoader\TestCustomLoader.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\14_Out\TestOutArg.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\15_ProtoBuffer\TestProtoBuffer.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\15_ProtoBuffer\TestProtol.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\15_ProtoBuffer\TestProtolWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\16_Int64\TestInt64.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\17_Inherit\TestInherit.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\18_Bundle\TestABLoader.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\19_cjson\TestCJson.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\20_utf8\TestUTF8.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\21_String\TestString.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\22_Reflection\TestReflection.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\23_List\UseList.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\24_Struct\PassStruct.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\Performance\TestPerformance.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\TestErrorStack\TestInstantiate.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\TestErrorStack\TestInstantiate2.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\TestErrorStack\TestLuaStack.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\TestOverload\TestExportWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\TestOverload\TestExport_SpaceWrap.cs" />
+    <Compile Include="Assets\LuaFramework\ToLua\Examples\TestOverload\TestOverload.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Misc\LuaClient.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Misc\LuaCoroutine.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Misc\LuaLooper.cs" />
@@ -408,6 +448,7 @@
     <None Include="Assets\FairyGUI\Source\Resources\Shaders\FairyGUI-Text.shader" />
     <None Include="Assets\LuaFramework\ToLua\readme.txt" />
     <None Include="Assets\Resources\gitkeeper.txt" />
+    <None Include="Assets\StreamingAssets\files.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

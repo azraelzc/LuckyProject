@@ -5,5 +5,5 @@
     <image id="iuic1" name="btn_juese.png" path="/Images/"/>
     <component id="iuic2" name="BtnRole.xml" path="/Components/"/>
   </resources>
-  <publish name="UIMain" path="..\client\Assets\GameResources\UI\&amp;UIMain"/>
+  <publish name="UIMain" path="..\client\Assets\Resources\UI\&amp;UIMain"/>
 </packageDescription>
