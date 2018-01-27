@@ -19,7 +19,7 @@ require "Controller/PromptCtrl"
 Game = {};
 local this = Game;
 
-local game; 
+local game;
 local transform;
 local gameObject;
 local WWW = UnityEngine.WWW;
@@ -32,26 +32,26 @@ end
 
 --初始化完成，发送链接服务器信息--
 function Game.OnInitOK()
-    AppConst.SocketPort = 2012;
-    AppConst.SocketAddress = "127.0.0.1";
-    networkMgr:SendConnect();
-
-    --注册LuaView--
-    this.InitViewPanels();
-
-    this.test_class_func();
-    this.test_pblua_func();
-    this.test_cjson_func();
-    this.test_pbc_func();
-    this.test_lpeg_func();
-    this.test_sproto_func();
-    coroutine.start(this.test_coroutine);
-
-    CtrlManager.Init();
-    local ctrl = CtrlManager.GetCtrl(CtrlNames.Prompt);
-    if ctrl ~= nil and AppConst.ExampleMode == 1 then
-        ctrl:Awake();
-    end
+    --AppConst.SocketPort = 2012;
+    --AppConst.SocketAddress = "127.0.0.1";
+    --networkMgr:SendConnect();
+    --
+    ----注册LuaView--
+    --this.InitViewPanels();
+    --
+    --this.test_class_func();
+    --this.test_pblua_func();
+    --this.test_cjson_func();
+    --this.test_pbc_func();
+    --this.test_lpeg_func();
+    --this.test_sproto_func();
+    --coroutine.start(this.test_coroutine);
+    --
+    --CtrlManager.Init();
+    --local ctrl = CtrlManager.GetCtrl(CtrlNames.Prompt);
+    --if ctrl ~= nil and AppConst.ExampleMode == 1 then
+    --    ctrl:Awake();
+    --end
        
     logWarn('LuaFramework InitOK--->>>');
 end

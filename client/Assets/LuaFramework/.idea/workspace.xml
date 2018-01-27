@@ -11,21 +11,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.lua" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.lua" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lua/Main.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="40">
+              <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.lua" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Game.lua" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lua/Logic/Game.lua">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+            <state relative-caret-position="260">
+              <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="6" selection-end-line="53" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -47,8 +47,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Lua/Logic/Game.lua" />
         <option value="$PROJECT_DIR$/Lua/Main.lua" />
+        <option value="$PROJECT_DIR$/Lua/Logic/Game.lua" />
       </list>
     </option>
   </component>
@@ -58,7 +58,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-199" />
     <option name="y" value="16" />
     <option name="width" value="1400" />
@@ -270,15 +270,15 @@
       <workItem from="1516953284249" duration="2759000" />
       <workItem from="1516967022943" duration="40000" />
       <workItem from="1516967106372" duration="1763000" />
-      <workItem from="1517016653346" duration="67000" />
+      <workItem from="1517016653346" duration="1036000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4629000" />
+    <option name="totallyTimeSpent" value="5598000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -370,18 +370,18 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lua/Manager/Game.lua" />
-    <entry file="file://$PROJECT_DIR$/Lua/Logic/Game.lua">
+    <entry file="file://$PROJECT_DIR$/Lua/Main.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
+        <state relative-caret-position="40">
+          <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lua/Main.lua">
+    <entry file="file://$PROJECT_DIR$/Lua/Logic/Game.lua">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="260">
+          <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="6" selection-end-line="53" selection-end-column="9" />
           <folding />
         </state>
       </provider>
