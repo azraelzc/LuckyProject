@@ -1,21 +1,21 @@
 ManifestFileVersion: 0
-CRC: 166068593
+CRC: 3455537043
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 32572877c2e3956f1c54655cd920680f
+    Hash: ca2b28c41f04b65721ded2ac956ce421
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 1033bf7ddfd4c6d43e7a6382c0a0a61a
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
 HashAppended: 0
 ClassTypes:
 - Class: 49
   Script: {instanceID: 0}
 Assets:
+- Assets/Lua/3rd/sproto/test.lua.bytes
 - Assets/Lua/3rd/sproto/print_r.lua.bytes
 - Assets/Lua/3rd/sproto/sproto.lua.bytes
-- Assets/Lua/3rd/sproto/test.lua.bytes
-- Assets/Lua/3rd/sproto/sprotoparser.lua.bytes
 - Assets/Lua/3rd/sproto/testrpc.lua.bytes
+- Assets/Lua/3rd/sproto/sprotoparser.lua.bytes
 - Assets/Lua/3rd/sproto/testall.lua.bytes
 Dependencies: []
