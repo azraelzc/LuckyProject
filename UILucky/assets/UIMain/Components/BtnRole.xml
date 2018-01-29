@@ -3,5 +3,5 @@
   <displayList>
     <image id="n0_iuic" name="n0" src="iuic1" xy="0,0"/>
   </displayList>
-  <Button/>
+  <Button downEffect="scale" downEffectValue="0.80"/>
 </component>
