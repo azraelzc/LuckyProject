@@ -247,6 +247,7 @@ using System.IO;
 using LuaFramework;
 using LuaInterface;
 using UObject = UnityEngine.Object;
+using FairyGUI;
 
 namespace LuaFramework {
     public class ResourceManager : Manager {
@@ -366,6 +367,20 @@ namespace LuaFramework {
                 return bundlesWithVariant[bestFitIndex];
             else
                 return assetBundleName;
+        }
+
+        private static string path = "UIRes/";
+        public void LoadPackage(string resName,string pkgName, LuaFunction luaFunc)
+        {
+            Debug.Log("=======LoadPackage=======");
+            string addPath = path + "&" + pkgName + "/" + pkgName;
+            UIPackage p = UIPackage.AddPackage(addPath);
+            GComponent view = p.CreateObject(resName).asCom;
+            if (luaFunc != null)
+            {
+                luaFunc.Call(view);
+                luaFunc.Dispose();
+            }
         }
 
         /// <summary>

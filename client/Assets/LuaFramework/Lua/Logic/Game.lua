@@ -14,6 +14,7 @@ require "Logic/LuaClass"
 require "Logic/CtrlManager"
 require "Common/functions"
 require "Controller/PromptCtrl"
+require "Common/FairyGUI"
 
 --管理器--
 Game = {};
@@ -23,6 +24,9 @@ local game;
 local transform;
 local gameObject;
 local WWW = UnityEngine.WWW;
+
+UIManager = require("Logic/UIManager")
+UIDefine = require("Common/UIDefine")
 
 function Game.InitViewPanels()
 	for i = 1, #PanelNames do
@@ -52,7 +56,10 @@ function Game.OnInitOK()
     --if ctrl ~= nil and AppConst.ExampleMode == 1 then
     --    ctrl:Awake();
     --end
-       
+
+    UIManager:Init()
+    print("============",table.tostring(UIDefine))
+    UIManager:OpenUI(UIDefine.UIPanel.Main)
     logWarn('LuaFramework InitOK--->>>');
 end
 

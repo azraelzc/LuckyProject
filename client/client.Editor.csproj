@@ -339,7 +339,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\FairyGUI\LuaSupport\ToLua\ReadMe.txt" />
-    <None Include="Assets\FairyGUI\LuaSupport\uLua\ReadMe.txt" />
     <None Include="Assets\FairyGUI\Source\Resources\Shaders\AddOn\FairyGUI-BlurFilter.shader" />
     <None Include="Assets\FairyGUI\Source\Resources\Shaders\FairyGUI-BMFont.shader" />
     <None Include="Assets\FairyGUI\Source\Resources\Shaders\FairyGUI-Image.shader" />
