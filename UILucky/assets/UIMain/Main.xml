@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1334,750">
   <displayList>
-    <component id="n0_iuic" name="n0" src="iuic2" xy="613,311"/>
-    <text id="n1_uw0r" name="n1" xy="557,417" size="298,27" fontSize="20" text="11111111111111111111111111"/>
+    <component id="n0_iuic" name="btnBag" src="iuic2" xy="613,311"/>
+    <text id="n1_uw0r" name="n1" xy="557,417" size="291,27" fontSize="20" text="11111111111111111111111111"/>
   </displayList>
 </component>

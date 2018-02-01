@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="r0h625z0" jpegQuality="80" compressPNG="true">
+  <resources>
+    <component id="fh1d0" name="Attribute.xml" path="/" exported="true"/>
+  </resources>
+  <publish name="UIAttribute" path="..\client\Assets\Resources\UIRes\&amp;UIAttribute"/>
+</packageDescription>

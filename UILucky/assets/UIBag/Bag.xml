@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1334,750">
+  <displayList>
+    <graph id="n0_10vls" name="n0" xy="359,141" size="663,462" type="rect"/>
+    <component id="n1_10vls" name="close" src="10vls7" pkg="ru6184xx" xy="977,127"/>
+    <component id="n2_10vls" name="btnAtt" src="10vls6" pkg="ru6184xx" xy="636,529">
+      <Button title="属性"/>
+    </component>
+  </displayList>
+</component>

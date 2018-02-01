@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="ru6184xx" jpegQuality="80" compressPNG="true">
+  <resources>
+    <component id="o08b2" name="BtnBlue.xml" path="/Componets/" exported="true"/>
+    <image id="10vls3" name="btn_blue.png" path="/Images/" exported="true" scale="9grid" scale9grid="32,5,64,32"/>
+    <image id="10vls4" name="btn_close.png" path="/Images/" exported="true"/>
+    <image id="10vls5" name="btn_yellow.png" path="/Images/" exported="true" scale="9grid" scale9grid="50,4,17,7"/>
+    <component id="10vls6" name="BtnYellow.xml" path="/Componets/" exported="true"/>
+    <component id="10vls7" name="BtnClose.xml" path="/Componets/" exported="true"/>
+  </resources>
+  <publish name="Common" path="..\client\Assets\Resources\UIRes\&amp;Common"/>
+</packageDescription>

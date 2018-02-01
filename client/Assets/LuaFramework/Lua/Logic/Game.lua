@@ -58,7 +58,6 @@ function Game.OnInitOK()
     --end
 
     UIManager:Init()
-    print("============",table.tostring(UIDefine))
     UIManager:OpenUI(UIDefine.UIPanel.Main)
     logWarn('LuaFramework InitOK--->>>');
 end

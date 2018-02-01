@@ -370,15 +370,13 @@ namespace LuaFramework {
         }
 
         private static string path = "UIRes/";
-        public void LoadPackage(string resName,string pkgName, LuaFunction luaFunc)
+        public void LoadPackage(string pkgName, LuaFunction luaFunc)
         {
-            Debug.Log("=======LoadPackage=======");
             string addPath = path + "&" + pkgName + "/" + pkgName;
             UIPackage p = UIPackage.AddPackage(addPath);
-            GComponent view = p.CreateObject(resName).asCom;
             if (luaFunc != null)
             {
-                luaFunc.Call(view);
+                luaFunc.Call(addPath);
                 luaFunc.Dispose();
             }
         }

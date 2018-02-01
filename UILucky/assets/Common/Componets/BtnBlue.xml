@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="126,43" extention="Button">
+  <displayList>
+    <image id="n0_10vls" name="n0" src="10vls3" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n1_10vls" name="title" xy="59,8" size="10,27" fontSize="20" ubb="true" text="">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </text>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.80"/>
+</component>

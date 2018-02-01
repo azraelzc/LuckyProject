@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1334,750">
+  <displayList>
+    <graph id="n0_fh1d" name="n0" xy="257,123" size="748,508" type="rect"/>
+    <component id="n2_fh1d" name="close" src="10vls7" pkg="ru6184xx" xy="960,103"/>
+  </displayList>
+</component>
