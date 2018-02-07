@@ -372,13 +372,76 @@ namespace LuaFramework {
         private static string path = "UIRes/";
         public void LoadPackage(string pkgName, LuaFunction luaFunc)
         {
+#if UNITY_EDITOR
             string addPath = path + "&" + pkgName + "/" + pkgName;
-            UIPackage p = UIPackage.AddPackage(addPath);
+            //UIPackage p = UIPackage.AddPackage(addPath);
+            UIPackage.AddPackage(addPath, (string name, string extension, System.Type type) =>
+            {
+                string loadPath = "Assets/AbAsset/" + name + extension;
+                return UnityEditor.AssetDatabase.LoadAssetAtPath(loadPath, type);
+            });
             if (luaFunc != null)
             {
                 luaFunc.Call(addPath);
                 luaFunc.Dispose();
             }
+#else
+        List<PkgLoadInfo> loadPkgInfo = null;
+        PkgLoadInfo temp = new PkgLoadInfo();
+        temp.path = fullPath;
+        temp.dl = dl;
+        temp.luaFunc = luaFunc;
+        if (m_pkgLoadDic.TryGetValue(fullPath, out loadPkgInfo))
+        {
+            loadPkgInfo.Add(temp);
+            return;
+        }
+        else
+        {
+            loadPkgInfo = new List<PkgLoadInfo>();
+            loadPkgInfo.Add(temp);
+            m_pkgLoadDic[fullPath] = loadPkgInfo;
+        }
+        assetManager.Load(fullPath, delegate (Tangzx.ABSystem.AssetBundleInfo abInfo) {
+            string pkgName = "";
+            if (abInfo == null)
+            {
+                Debug.LogError("LoadPackage error:" + fullPath);
+            }
+            else
+            {
+                // 这里改了个恶心的bug， 同时调用一样的图集的时候 第一次进来会直接卸载ab,第二次进来ab就已经没了。
+                // 所以这里需要做一下判断，按道理应该用package name来做判断 去个巧 这样判断也是可以满足需求
+                if (abInfo.bundle != null)
+                {
+                    pkgName = FairyGUI.UIPackage.AddPackage(abInfo.bundle).name;
+                    assetManager.RemoveBundle(fullPath);
+
+                    loadPkgInfo = null;
+                    if (m_pkgLoadDic.TryGetValue(fullPath, out loadPkgInfo))
+                    {
+                        for (int i = 0; i < loadPkgInfo.Count; ++i)
+                        {
+                            if (loadPkgInfo[i].dl != null)
+                                loadPkgInfo[i].dl(pkgName);
+                            if (loadPkgInfo[i].luaFunc != null)
+                            {
+                                loadPkgInfo[i].luaFunc.Call(pkgName);
+                                loadPkgInfo[i].luaFunc.Dispose();
+                                loadPkgInfo[i].luaFunc = null;
+                            }
+                        }
+                        m_pkgLoadDic.Remove(fullPath);
+                    }
+                }      
+                else
+                {
+                    Debug.LogError("LoadPackage bundle null:" + fullPath);
+                }          
+            }                   
+        });
+#endif
+
         }
 
         /// <summary>

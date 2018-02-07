@@ -196,7 +196,9 @@ namespace FairyGUI
 		/// <returns>UIPackage</returns>
 		public static UIPackage AddPackage(string descFilePath)
 		{
-			return AddPackage(descFilePath, (string name, string extension, System.Type type) => { return Resources.Load(name, type); });
+			return AddPackage(descFilePath, (string name, string extension, System.Type type) => {
+                return Resources.Load(name, type);
+            });
 		}
 
 		/// <summary>
@@ -634,9 +636,9 @@ namespace FairyGUI
 			}
 
 			_loadingPackage = true;
-
-			arr = str.Split('\n');
-			int cnt = arr.Length;
+            
+            arr = str.Split('\n');
+            int cnt = arr.Length;
 			for (int i = 1; i < cnt; i++)
 			{
 				str = arr[i];

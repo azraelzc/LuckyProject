@@ -8,5 +8,5 @@
     <component id="10vls6" name="BtnYellow.xml" path="/Componets/" exported="true"/>
     <component id="10vls7" name="BtnClose.xml" path="/Componets/" exported="true"/>
   </resources>
-  <publish name="Common" path="..\client\Assets\Resources\UIRes\&amp;Common"/>
+  <publish name="Common" path="..\client\Assets\AbAsset\UIRes\&amp;Common"/>
 </packageDescription>

@@ -3,5 +3,5 @@
   <resources>
     <component id="o08b0" name="Bag.xml" path="/" exported="true"/>
   </resources>
-  <publish name="UIBag" path="..\client\Assets\Resources\UIRes\&amp;UIBag"/>
+  <publish name="UIBag" path="..\client\Assets\AbAsset\UIRes\&amp;UIBag"/>
 </packageDescription>

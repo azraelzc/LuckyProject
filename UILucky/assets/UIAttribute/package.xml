@@ -3,5 +3,5 @@
   <resources>
     <component id="fh1d0" name="Attribute.xml" path="/" exported="true"/>
   </resources>
-  <publish name="UIAttribute" path="..\client\Assets\Resources\UIRes\&amp;UIAttribute"/>
+  <publish name="UIAttribute" path="..\client\Assets\AbAsset\UIRes\&amp;UIAttribute"/>
 </packageDescription>
