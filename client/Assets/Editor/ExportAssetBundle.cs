@@ -35,7 +35,7 @@ public class ExportAssetBundle {
             // abb.assetBundleVariant = "hd";
             assetNames = str
         };
-        BuildPipeline.BuildAssetBundles("Assets/Resources/AssetBundle", new AssetBundleBuild[1] { abb }, BuildAssetBundleOptions.None, BuildTarget.Android);
+        BuildPipeline.BuildAssetBundles("Assets/StreamingAssets/AssetBundle", new AssetBundleBuild[1] { abb }, BuildAssetBundleOptions.None, BuildTarget.Android);
     }
 
     private static void InsertFileName(DirectoryInfo dirInfo,ref List<string> files)
@@ -44,7 +44,6 @@ public class ExportAssetBundle {
         for (int i = 0; i < fileInfos.Length; i++)
         {
             string fileName = fileInfos[i].FullName;
-
             if (!fileName.EndsWith("meta"))
             {
                 fileName = fileName.Substring(fileName.IndexOf("Assets\\"));

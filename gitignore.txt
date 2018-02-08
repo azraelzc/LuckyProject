@@ -4,4 +4,4 @@ bin
 client/Library
 client/Temp
 client/.vs
-client/Assets/Resources/AssetBundle
+client/Assets/StreamingAssets/AssetBundle
