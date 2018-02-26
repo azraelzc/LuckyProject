@@ -31,7 +31,7 @@ function UIManager:Destory(name)
 end
 
 function UIManager:preAddPackage()
-    UIManager:AddPackage("Common",nil)
+    self:AddPackage("Common",nil)
 end
 
 -- 这里是从window类的hide方法里面调过来的 别的地方禁止调用
