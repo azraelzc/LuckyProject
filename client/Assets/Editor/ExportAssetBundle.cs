@@ -6,9 +6,20 @@ using UnityEditor;
 using UnityEngine;
 
 public class ExportAssetBundle {
+
+    public static string BuildTargetPath = Application.dataPath + "/StreamingAssets/";
     [MenuItem("Custom Editor/ExportAssetBundle")]
     static void Example()
     {
+
+        //先删除原有的assetbundle
+        string assetPath = BuildTargetPath + "AssetBundle/";
+        DirectoryInfo assetfolder = new DirectoryInfo(assetPath);
+        if (assetfolder.Exists)
+        {
+            assetfolder.Delete(true);
+        }
+        assetfolder.Create();
         /*
          *  1.创建building map实体
          *  2.指定Assetubndle名称
@@ -29,13 +40,16 @@ public class ExportAssetBundle {
             Debug.Log("=====name=====" + name);
             str[i] = name;
         }
+        AssetBundleBuild[] builds = new AssetBundleBuild[1];
         AssetBundleBuild abb = new AssetBundleBuild
         {
             assetBundleName = "myAssetBundle",
             // abb.assetBundleVariant = "hd";
             assetNames = str
         };
-        BuildPipeline.BuildAssetBundles("Assets/StreamingAssets/AssetBundle", new AssetBundleBuild[1] { abb }, BuildAssetBundleOptions.None, BuildTarget.Android);
+        builds[0] = abb;
+        BuildPipeline.BuildAssetBundles(assetPath, builds, BuildAssetBundleOptions.None, BuildTarget.Android);
+        AssetDatabase.Refresh();
     }
 
     private static void InsertFileName(DirectoryInfo dirInfo,ref List<string> files)
