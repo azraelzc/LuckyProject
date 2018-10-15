@@ -1,16 +1,10 @@
 {
 	"hidden_packages": [],
-	"active_doc": [
-		"r0h625z0",
-		"fh1d0"
-	],
 	"docs": [
 		"d0crf0h6",
 		"iuic0",
 		"d0crf0h6",
 		"iuic2",
-		"rlctrhok",
-		"o08b0",
 		"ru6184xx",
 		"o08b2",
 		"ru6184xx",
@@ -18,7 +12,9 @@
 		"ru6184xx",
 		"10vls7",
 		"r0h625z0",
-		"fh1d0"
+		"fh1d0",
+		"rlctrhok",
+		"o08b0"
 	],
 	"expanded_nodes": [
 		"ru6184xx",
@@ -29,5 +25,9 @@
 		"/",
 		"d0crf0h6",
 		"/"
+	],
+	"active_doc": [
+		"r0h625z0",
+		"fh1d0"
 	]
 }

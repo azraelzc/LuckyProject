@@ -2,6 +2,7 @@
 <component size="1334,750">
   <displayList>
     <graph id="n0_fh1d" name="n0" xy="257,123" size="748,508" type="rect"/>
-    <component id="n2_fh1d" name="close" src="10vls7" pkg="ru6184xx" xy="960,103"/>
+    <component id="n2_fh1d" name="close" src="10vls7" fileName="Componets/BtnClose.xml" pkg="ru6184xx" xy="960,103"/>
+    <text id="n3_fqp3" name="n3" xy="585,185" size="45,27" fontSize="20" text="属性"/>
   </displayList>
 </component>
