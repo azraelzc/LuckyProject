@@ -60,7 +60,7 @@ public class LuaFramework_ResourceManagerWrap
 			LuaFramework.ResourceManager obj = (LuaFramework.ResourceManager)ToLua.CheckObject<LuaFramework.ResourceManager>(L, 1);
 			string arg0 = ToLua.CheckString(L, 2);
 			UnityEngine.AssetBundle o = obj.LoadAssetBundle(arg0);
-			ToLua.PushSealed(L, o);
+			ToLua.Push(L, o);
 			return 1;
 		}
 		catch (Exception e)
