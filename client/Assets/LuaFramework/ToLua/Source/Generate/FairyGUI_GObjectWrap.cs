@@ -57,6 +57,7 @@ public class FairyGUI_GObjectWrap
 		L.RegVar("minHeight", get_minHeight, set_minHeight);
 		L.RegVar("maxHeight", get_maxHeight, set_maxHeight);
 		L.RegVar("dragBounds", get_dragBounds, set_dragBounds);
+		L.RegVar("packageItem", get_packageItem, set_packageItem);
 		L.RegVar("id", get_id, null);
 		L.RegVar("relations", get_relations, null);
 		L.RegVar("parent", get_parent, null);
@@ -90,6 +91,8 @@ public class FairyGUI_GObjectWrap
 		L.RegVar("size", get_size, set_size);
 		L.RegVar("actualWidth", get_actualWidth, null);
 		L.RegVar("actualHeight", get_actualHeight, null);
+		L.RegVar("xMin", get_xMin, set_xMin);
+		L.RegVar("yMin", get_yMin, set_yMin);
 		L.RegVar("scaleX", get_scaleX, set_scaleX);
 		L.RegVar("scaleY", get_scaleY, set_scaleY);
 		L.RegVar("scale", get_scale, set_scale);
@@ -97,6 +100,7 @@ public class FairyGUI_GObjectWrap
 		L.RegVar("pivotX", get_pivotX, set_pivotX);
 		L.RegVar("pivotY", get_pivotY, set_pivotY);
 		L.RegVar("pivot", get_pivot, set_pivot);
+		L.RegVar("pivotAsAnchor", get_pivotAsAnchor, set_pivotAsAnchor);
 		L.RegVar("touchable", get_touchable, set_touchable);
 		L.RegVar("grayed", get_grayed, set_grayed);
 		L.RegVar("enabled", get_enabled, set_enabled);
@@ -171,12 +175,29 @@ public class FairyGUI_GObjectWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 3);
-			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
-			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
-			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			obj.SetXY(arg0, arg1);
-			return 0;
+			int count = LuaDLL.lua_gettop(L);
+
+			if (count == 3)
+			{
+				FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
+				float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+				float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
+				obj.SetXY(arg0, arg1);
+				return 0;
+			}
+			else if (count == 4)
+			{
+				FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
+				float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+				float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
+				bool arg2 = LuaDLL.luaL_checkboolean(L, 4);
+				obj.SetXY(arg0, arg1, arg2);
+				return 0;
+			}
+			else
+			{
+				return LuaDLL.luaL_throw(L, "invalid arguments to method: FairyGUI.GObject.SetXY");
+			}
 		}
 		catch (Exception e)
 		{
@@ -754,10 +775,11 @@ public class FairyGUI_GObjectWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 2);
+			ToLua.CheckArgsCount(L, 3);
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
-			FairyGUI.Utils.XML arg0 = (FairyGUI.Utils.XML)ToLua.CheckObject<FairyGUI.Utils.XML>(L, 2);
-			obj.Setup_BeforeAdd(arg0);
+			FairyGUI.Utils.ByteBuffer arg0 = (FairyGUI.Utils.ByteBuffer)ToLua.CheckObject<FairyGUI.Utils.ByteBuffer>(L, 2);
+			int arg1 = (int)LuaDLL.luaL_checknumber(L, 3);
+			obj.Setup_BeforeAdd(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)
@@ -771,10 +793,11 @@ public class FairyGUI_GObjectWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 2);
+			ToLua.CheckArgsCount(L, 3);
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
-			FairyGUI.Utils.XML arg0 = (FairyGUI.Utils.XML)ToLua.CheckObject<FairyGUI.Utils.XML>(L, 2);
-			obj.Setup_AfterAdd(arg0);
+			FairyGUI.Utils.ByteBuffer arg0 = (FairyGUI.Utils.ByteBuffer)ToLua.CheckObject<FairyGUI.Utils.ByteBuffer>(L, 2);
+			int arg1 = (int)LuaDLL.luaL_checknumber(L, 3);
+			obj.Setup_AfterAdd(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)
@@ -792,7 +815,7 @@ public class FairyGUI_GObjectWrap
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
 			UnityEngine.Vector2 arg0 = ToLua.ToVector2(L, 2);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			DG.Tweening.Tweener o = obj.TweenMove(arg0, arg1);
+			FairyGUI.GTweener o = obj.TweenMove(arg0, arg1);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -811,7 +834,7 @@ public class FairyGUI_GObjectWrap
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			DG.Tweening.Tweener o = obj.TweenMoveX(arg0, arg1);
+			FairyGUI.GTweener o = obj.TweenMoveX(arg0, arg1);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -830,7 +853,7 @@ public class FairyGUI_GObjectWrap
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			DG.Tweening.Tweener o = obj.TweenMoveY(arg0, arg1);
+			FairyGUI.GTweener o = obj.TweenMoveY(arg0, arg1);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -849,7 +872,7 @@ public class FairyGUI_GObjectWrap
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
 			UnityEngine.Vector2 arg0 = ToLua.ToVector2(L, 2);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			DG.Tweening.Tweener o = obj.TweenScale(arg0, arg1);
+			FairyGUI.GTweener o = obj.TweenScale(arg0, arg1);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -868,7 +891,7 @@ public class FairyGUI_GObjectWrap
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			DG.Tweening.Tweener o = obj.TweenScaleX(arg0, arg1);
+			FairyGUI.GTweener o = obj.TweenScaleX(arg0, arg1);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -887,7 +910,7 @@ public class FairyGUI_GObjectWrap
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			DG.Tweening.Tweener o = obj.TweenScaleY(arg0, arg1);
+			FairyGUI.GTweener o = obj.TweenScaleY(arg0, arg1);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -906,7 +929,7 @@ public class FairyGUI_GObjectWrap
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
 			UnityEngine.Vector2 arg0 = ToLua.ToVector2(L, 2);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			DG.Tweening.Tweener o = obj.TweenResize(arg0, arg1);
+			FairyGUI.GTweener o = obj.TweenResize(arg0, arg1);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -925,7 +948,7 @@ public class FairyGUI_GObjectWrap
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			DG.Tweening.Tweener o = obj.TweenFade(arg0, arg1);
+			FairyGUI.GTweener o = obj.TweenFade(arg0, arg1);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -944,7 +967,7 @@ public class FairyGUI_GObjectWrap
 			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			DG.Tweening.Tweener o = obj.TweenRotate(arg0, arg1);
+			FairyGUI.GTweener o = obj.TweenRotate(arg0, arg1);
 			ToLua.PushObject(L, o);
 			return 1;
 		}
@@ -1160,6 +1183,25 @@ public class FairyGUI_GObjectWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index dragBounds on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_packageItem(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			FairyGUI.PackageItem ret = obj.packageItem;
+			ToLua.PushObject(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index packageItem on a nil value");
 		}
 	}
 
@@ -1786,6 +1828,44 @@ public class FairyGUI_GObjectWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_xMin(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			float ret = obj.xMin;
+			LuaDLL.lua_pushnumber(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index xMin on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_yMin(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			float ret = obj.yMin;
+			LuaDLL.lua_pushnumber(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index yMin on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int get_scaleX(IntPtr L)
 	{
 		object o = null;
@@ -1915,6 +1995,25 @@ public class FairyGUI_GObjectWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index pivot on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int get_pivotAsAnchor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			bool ret = obj.pivotAsAnchor;
+			LuaDLL.lua_pushboolean(L, ret);
+			return 1;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index pivotAsAnchor on a nil value");
 		}
 	}
 
@@ -2926,6 +3025,25 @@ public class FairyGUI_GObjectWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_packageItem(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			FairyGUI.PackageItem arg0 = (FairyGUI.PackageItem)ToLua.CheckObject<FairyGUI.PackageItem>(L, 2);
+			obj.packageItem = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index packageItem on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_x(IntPtr L)
 	{
 		object o = null;
@@ -3097,6 +3215,44 @@ public class FairyGUI_GObjectWrap
 	}
 
 	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_xMin(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			obj.xMin = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index xMin on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_yMin(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
+			obj.yMin = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index yMin on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
 	static int set_scaleX(IntPtr L)
 	{
 		object o = null;
@@ -3226,6 +3382,25 @@ public class FairyGUI_GObjectWrap
 		catch(Exception e)
 		{
 			return LuaDLL.toluaL_exception(L, e, o, "attempt to index pivot on a nil value");
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int set_pivotAsAnchor(IntPtr L)
+	{
+		object o = null;
+
+		try
+		{
+			o = ToLua.ToObject(L, 1);
+			FairyGUI.GObject obj = (FairyGUI.GObject)o;
+			bool arg0 = LuaDLL.luaL_checkboolean(L, 2);
+			obj.pivotAsAnchor = arg0;
+			return 0;
+		}
+		catch(Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e, o, "attempt to index pivotAsAnchor on a nil value");
 		}
 	}
 

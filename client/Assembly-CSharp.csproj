@@ -79,12 +79,11 @@
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\HitTest\RectHitTest.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\Image.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\MaterialManager.cs" />
-    <Compile Include="Assets\FairyGUI\Source\Scripts\Core\MaterialPool.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\MovieClip.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\Core\NAudioClip.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\NGraphics.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\NMaterial.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\NTexture.cs" />
-    <Compile Include="Assets\FairyGUI\Source\Scripts\Core\PlayState.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\ShaderConfig.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\Shape.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\Stage.cs" />
@@ -100,6 +99,7 @@
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\Text\IKeyboard.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\Text\InputTextField.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\Text\RichTextField.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\Core\Text\RTLSupport.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\Text\SelectionShape.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\Text\TextField.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Core\Text\TextFormat.cs" />
@@ -119,9 +119,17 @@
     <Compile Include="Assets\FairyGUI\Source\Scripts\Gesture\PinchGesture.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Gesture\RotationGesture.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\Gesture\SwipeGesture.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\Tween\EaseManager.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\Tween\EaseType.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\Tween\GTween.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\Tween\GTweener.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\Tween\TweenManager.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\Tween\TweenPropType.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\Tween\TweenValue.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\Action\ChangePageAction.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\Action\ControllerAction.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\Action\PlayTransitionAction.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\UI\AsyncCreationHelper.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\Controller.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\DragDropManager.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\EMRenderSupport.cs" />
@@ -165,7 +173,7 @@
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\Relations.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\ScrollPane.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\Transition.cs" />
-    <Compile Include="Assets\FairyGUI\Source\Scripts\UI\Tree\ITreeListener.cs" />
+    <Compile Include="Assets\FairyGUI\Source\Scripts\UI\TranslationHelper.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\Tree\TreeNode.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\Tree\TreeView.cs" />
     <Compile Include="Assets\FairyGUI\Source\Scripts\UI\UIConfig.cs" />
@@ -366,7 +374,6 @@
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\FairyGUI_InputEventWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\FairyGUI_LuaUIHelperWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\FairyGUI_LuaWindowWrap.cs" />
-    <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\FairyGUI_PlayStateWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\FairyGUI_PopupMenuWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\FairyGUI_RelationsWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\FairyGUI_RelationTypeWrap.cs" />

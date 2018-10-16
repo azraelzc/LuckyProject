@@ -338,7 +338,8 @@ namespace FairyGUI
 
 		void UpdateHitArea()
 		{
-			((BoxColliderHitTest)this.container.hitArea).SetArea(_ui.x, _ui.y, _ui.width, _ui.height);
+			if (this.container.hitArea != null)
+				((BoxColliderHitTest)this.container.hitArea).SetArea(_ui.xMin, _ui.yMin, _ui.width, _ui.height);
 		}
 
 		void CreateUI_EditMode()
@@ -398,20 +399,22 @@ namespace FairyGUI
 				switch (fitScreen)
 				{
 					case FitScreen.FitSize:
-						this._ui.SetXY(0, 0);
 						this._ui.SetSize(width, height);
+						this._ui.SetXY(0, 0, true);
 						break;
 
 					case FitScreen.FitWidthAndSetMiddle:
-						this._ui.SetXY(0, (int)((height - this._ui.sourceHeight) / 2));
 						this._ui.SetSize(width, this._ui.sourceHeight);
+						this._ui.SetXY(0, (int)((height - this._ui.sourceHeight) / 2), true);
 						break;
 
 					case FitScreen.FitHeightAndSetCenter:
-						this._ui.SetXY((int)((width - this._ui.sourceWidth) / 2), 0);
 						this._ui.SetSize(this._ui.sourceWidth, height);
+						this._ui.SetXY((int)((width - this._ui.sourceWidth) / 2), 0, true);
 						break;
 				}
+
+				UpdateHitArea();
 			}
 			else
 			{

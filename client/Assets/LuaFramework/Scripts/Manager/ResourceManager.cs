@@ -375,8 +375,9 @@ namespace LuaFramework {
 #if UNITY_EDITOR
             string addPath = path + "&" + pkgName + "/" + pkgName;
             //UIPackage p = UIPackage.AddPackage(addPath);
-            UIPackage.AddPackage(addPath, (string name, string extension, System.Type type) =>
+            UIPackage.AddPackage(addPath, (string name, string extension, System.Type type,out DestroyMethod destroyMethod) =>
             {
+                destroyMethod = DestroyMethod.None;
                 string loadPath = "Assets/AbAsset/" + name + extension;
                 return UnityEditor.AssetDatabase.LoadAssetAtPath(loadPath, type);
             });

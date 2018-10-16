@@ -1,6 +1,5 @@
-// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
 // Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
 Shader "FairyGUI/BMFont"
 {
@@ -96,8 +95,13 @@ Shader "FairyGUI/BMFont"
 				{
 					v2f o;
 					o.vertex = UnityObjectToClipPos(v.vertex);
+					#if !defined(UNITY_COLORSPACE_GAMMA) && (UNITY_VERSION >= 550)
+					o.color.rgb = GammaToLinearSpace(v.color.rgb);
+					o.color.a = v.color.a;
+					#else
 					o.color = v.color;
-
+					#endif
+					
 					float2 texcoord = v.texcoord;
 					o.flags.x = floor(texcoord.x/10);
 					texcoord.x = texcoord.x - o.flags.x*10;

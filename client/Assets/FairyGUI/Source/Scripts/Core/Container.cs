@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using FairyGUI.Utils;
 
 namespace FairyGUI
 {
@@ -869,6 +868,9 @@ namespace FairyGUI
 			for (int i = 0; i < count; i++)
 			{
 				DisplayObject child = _children[i];
+				if (!child.visible)
+					continue;
+
 				if (child is Container)
 				{
 					Container container = (Container)child;
@@ -908,6 +910,9 @@ namespace FairyGUI
 
 		public override void Dispose()
 		{
+			if (_disposed)
+				return;
+
 			base.Dispose(); //Destroy GameObject tree first, avoid destroying each seperately;
 
 			int numChildren = _children.Count;

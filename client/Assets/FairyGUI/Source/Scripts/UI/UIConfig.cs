@@ -42,7 +42,7 @@ namespace FairyGUI
 		/// <summary>
 		/// Default button click sound.
 		/// </summary>
-		public static AudioClip buttonSound;
+		public static NAudioClip buttonSound;
 
 		/// <summary>
 		/// Default button click sound volume.
@@ -159,9 +159,15 @@ namespace FairyGUI
 		public static float frameTimeForAsyncUIConstruction = 0.002f;
 
 		/// <summary>
-		/// 设定默认是否所有文本都从右向左显示（阿拉伯文字）。
+		/// if RenderTexture using in paiting mode has depth support.
 		/// </summary>
-		public static bool rightToLeftText = false;
+		public static bool depthSupportForPaintingMode = false;
+
+		/// <summary>
+		/// Indicates whether to draw extra 4 or 8 times to achieve stroke effect for textfield.
+		/// If it is true, that is the 8 times, otherwise it is the 4 times.
+		/// </summary>
+		public static bool enhancedTextOutlineEffect = true;
 
 		public enum ConfigKey
 		{
@@ -189,7 +195,8 @@ namespace FairyGUI
 			AllowSoftnessOnTopOrLeftSide,
 			InputCaretSize,
 			InputHighlightColor,
-			RightToLeftText,
+			EnhancedTextOutlineEffect,
+			DepthSupportForPaintingMode,
 
 			PleaseSelect = 100
 		}
@@ -244,7 +251,7 @@ namespace FairyGUI
 				{
 					case ConfigKey.ButtonSound:
 						if (Application.isPlaying)
-							UIConfig.buttonSound = UIPackage.GetItemAssetByURL(value.s) as AudioClip;
+							UIConfig.buttonSound = UIPackage.GetItemAssetByURL(value.s) as NAudioClip;
 						break;
 
 					case ConfigKey.ButtonSoundVolumeScale:
@@ -339,8 +346,12 @@ namespace FairyGUI
 						UIConfig.inputHighlightColor = value.c;
 						break;
 
-					case ConfigKey.RightToLeftText:
-						UIConfig.rightToLeftText = value.b;
+					case ConfigKey.DepthSupportForPaintingMode:
+						UIConfig.depthSupportForPaintingMode = value.b;
+						break;
+
+					case ConfigKey.EnhancedTextOutlineEffect:
+						UIConfig.enhancedTextOutlineEffect = value.b;
 						break;
 				}
 			}
@@ -362,32 +373,14 @@ namespace FairyGUI
 
 		public void ApplyModifiedProperties()
 		{
-			//nothing yet
+			EMRenderSupport.Reload();
 		}
+
+		public delegate NAudioClip SoundLoader(string url);
 
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="url"></param>
-		/// <returns></returns>
-		public delegate AudioClip SoundLoader(string url);
-		static SoundLoader soundLoader = null;
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="loader"></param>
-		public static void SetSoundLoader(SoundLoader loader)
-		{
-			soundLoader = loader;
-		}
-
-		internal static AudioClip LoadSound(string url)
-		{
-			if (soundLoader == null || url.StartsWith(UIPackage.URL_PREFIX))
-				return UIPackage.GetItemAssetByURL(url) as AudioClip;
-			else
-				return soundLoader(url);
-		}
+		public static SoundLoader soundLoader = null;
 	}
 }

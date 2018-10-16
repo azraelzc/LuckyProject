@@ -14,6 +14,7 @@ namespace FairyGUIEditor
 	{
 		SerializedProperty packageName;
 		SerializedProperty componentName;
+		SerializedProperty packagePath;
 		SerializedProperty renderMode;
 		SerializedProperty renderCamera;
 		SerializedProperty sortingOrder;
@@ -33,6 +34,7 @@ namespace FairyGUIEditor
 		{
 			packageName = serializedObject.FindProperty("packageName");
 			componentName = serializedObject.FindProperty("componentName");
+			packagePath = serializedObject.FindProperty("packagePath");
 			renderMode = serializedObject.FindProperty("renderMode");
 			renderCamera = serializedObject.FindProperty("renderCamera");
 			sortingOrder = serializedObject.FindProperty("sortingOrder");
@@ -88,6 +90,11 @@ namespace FairyGUIEditor
 				EditorWindow.GetWindow<PackagesWindow>(true, "Select a UI Component").SetSelection(packageName.stringValue, componentName.stringValue);
 			EditorGUILayout.EndHorizontal();
 
+			EditorGUILayout.BeginHorizontal();
+			EditorGUILayout.PrefixLabel("Package Path");
+			EditorGUILayout.LabelField(packagePath.stringValue, (GUIStyle)"helpbox");
+			EditorGUILayout.EndHorizontal();
+
 			EditorGUILayout.PropertyField(renderMode);
 			if ((RenderMode)renderMode.enumValueIndex != RenderMode.ScreenSpaceOverlay)
 				EditorGUILayout.PropertyField(renderCamera);
@@ -124,7 +131,7 @@ namespace FairyGUIEditor
 
 			Vector3 pos = panel.GetUIWorldPosition();
 			float sizeFactor = HandleUtility.GetHandleSize(pos);
-#if UNITY_2017 || UNITY_2018_1_OR_NEWER
+#if UNITY_2017_1_OR_NEWER
 			Vector3 newPos = Handles.FreeMoveHandle(pos, Quaternion.identity, sizeFactor, Vector3.one, Handles.ArrowHandleCap);
 #else
 			Vector3 newPos = Handles.FreeMoveHandle(pos, Quaternion.identity, sizeFactor, Vector3.one, Handles.ArrowCap);

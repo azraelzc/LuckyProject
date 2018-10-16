@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Text;
 using FairyGUI.Utils;
 
 #if UNITY_5_3_OR_NEWER
@@ -197,6 +196,17 @@ namespace FairyGUI
 		}
 #endif
 
+		public override void Dispose()
+		{
+			base.Dispose();
+
+			Timers.inst.Remove(RunTextureCollector);
+
+#if UNITY_5_4_OR_NEWER
+			SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+#endif
+		}
+
 		/// <summary>
 		/// 
 		/// </summary>
@@ -374,7 +384,7 @@ namespace FairyGUI
 		{
 			if (_audio != null)
 			{
-				Object.DestroyObject(_audio);
+				Object.Destroy(_audio);
 				_audio = null;
 			}
 		}
@@ -542,16 +552,14 @@ namespace FairyGUI
 			}
 			else if (touchScreen)
 			{
+				_touchTarget = null;
 				for (int i = 0; i < Input.touchCount; ++i)
 				{
 					Touch uTouch = Input.GetTouch(i);
-					if (uTouch.phase == TouchPhase.Stationary)
-						continue;
 
 					Vector2 pos = uTouch.position;
 					pos.y = stageHeight - pos.y;
 
-					_touchTarget = null;
 					TouchInfo touch = null;
 					TouchInfo free = null;
 					for (int j = 0; j < 5; j++)
@@ -568,14 +576,19 @@ namespace FairyGUI
 					if (touch == null)
 					{
 						touch = free;
-						if (touch == null)
-							return;
+						if (touch == null || uTouch.phase != TouchPhase.Began)
+							continue;
 
 						touch.touchId = uTouch.fingerId;
 					}
 
-					_touchTarget = HitTest(pos, true);
-					touch.target = _touchTarget;
+					if (uTouch.phase == TouchPhase.Stationary)
+						_touchTarget = touch.target;
+					else
+					{
+						_touchTarget = HitTest(pos, true);
+						touch.target = _touchTarget;
+					}
 				}
 			}
 			else
@@ -630,7 +643,11 @@ namespace FairyGUI
 				TouchInfo touch = _touches[0];
 				touch.modifiers = evt.modifiers;
 			}
+#if UNITY_2017_1_OR_NEWER
 			else if (evt.type == EventType.ScrollWheel)
+#else
+			else if (evt.type == EventType.scrollWheel)
+#endif
 			{
 				if (_touchTarget != null)
 				{
@@ -1063,7 +1080,7 @@ namespace FairyGUI
 				}
 				else if (curTime - texture.lastActive > 5)
 				{
-					texture.Dispose(true);
+					texture.Dispose();
 					_toCollectTextures.RemoveAt(i);
 					cnt--;
 				}

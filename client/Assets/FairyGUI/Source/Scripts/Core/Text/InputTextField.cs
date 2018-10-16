@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
-using System.Text.RegularExpressions;
 using System.Text;
+using System.Text.RegularExpressions;
+using UnityEngine;
 using FairyGUI.Utils;
 
 namespace FairyGUI
@@ -780,10 +780,14 @@ namespace FairyGUI
 
 		public override void Dispose()
 		{
+			if (_disposed)
+				return;
+
 			if (_editing)
 			{
 				_caret.RemoveFromParent();
 				_selectionShape.RemoveFromParent();
+				_editing = false;
 			}
 			base.Dispose();
 		}
@@ -844,7 +848,7 @@ namespace FairyGUI
 
 		void __touchMove(EventContext context)
 		{
-			if (isDisposed)
+			if (!_editing)
 				return;
 
 			Vector3 v = Stage.inst.touchPosition;

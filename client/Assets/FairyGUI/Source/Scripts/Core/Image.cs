@@ -353,35 +353,27 @@ namespace FairyGUI
 
 			if (_fillMethod != FillMethod.None)
 			{
-				graphics.Fill(_fillMethod, _fillAmount, _fillOrigin, _fillClockwise, _contentRect, uvRect);
-				graphics.FillColors(_color);
-				graphics.FillTriangles();
-				if (_texture.rotated)
-					NGraphics.RotateUV(graphics.uv, ref uvRect);
-				graphics.UpdateMesh();
+				graphics.DrawRectWithFillMethod(_contentRect, uvRect, _color, _fillMethod, _fillAmount, _fillOrigin, _fillClockwise);
 			}
 			else if (_texture.width == _contentRect.width && _texture.height == _contentRect.height)
 			{
-				graphics.SetOneQuadMesh(_contentRect, uvRect, _color, null, _texture.rotated);
+				graphics.DrawRect(_contentRect, uvRect, _color);
 			}
 			else if (_scaleByTile)
 			{
 				//如果纹理是repeat模式，而且单独占满一张纹理，那么可以用repeat的模式优化显示
-				if (_texture.nativeTexture.wrapMode == TextureWrapMode.Repeat
+				if (_texture.nativeTexture != null && _texture.nativeTexture.wrapMode == TextureWrapMode.Repeat
 					&& uvRect.x == 0 && uvRect.y == 0 && uvRect.width == 1 && uvRect.height == 1)
 				{
 					uvRect.width *= _contentRect.width / _texture.width;
 					uvRect.height *= _contentRect.height / _texture.height;
-					graphics.SetOneQuadMesh(_contentRect, uvRect, _color, null, _texture.rotated);
+					graphics.DrawRect(_contentRect, uvRect, _color);
 				}
 				else
 				{
 					TileFill(_contentRect, uvRect, _texture.width, _texture.height, -1);
 					graphics.FillColors(_color);
 					graphics.FillTriangles();
-					if (_texture.rotated)
-						NGraphics.RotateUV(graphics.uv, ref uvRect);
-					graphics.UpdateMesh();
 				}
 			}
 			else if (_scale9Grid != null)
@@ -472,14 +464,15 @@ namespace FairyGUI
 				}
 
 				graphics.FillColors(_color);
-				if (_texture.rotated)
-					NGraphics.RotateUV(graphics.uv, ref uvRect);
-				graphics.UpdateMesh();
 			}
 			else
 			{
-				graphics.SetOneQuadMesh(_contentRect, uvRect, _color, null, _texture.rotated);
+				graphics.DrawRect(_contentRect, uvRect, _color);
 			}
+
+			if (_texture.rotated)
+				NGraphics.RotateUV(graphics.uv, ref uvRect);
+			graphics.UpdateMesh();
 		}
 
 		/// <summary>

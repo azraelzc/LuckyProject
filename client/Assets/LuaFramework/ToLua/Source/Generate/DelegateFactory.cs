@@ -1500,19 +1500,20 @@ public class DelegateFactory
 		public FairyGUI_UIPackage_LoadResource_Event(LuaFunction func) : base(func) { }
 		public FairyGUI_UIPackage_LoadResource_Event(LuaFunction func, LuaTable self) : base(func, self) { }
 
-		public UnityEngine.Object Call(string param0, string param1, System.Type param2)
+		public object Call(string param0, string param1, System.Type param2, out FairyGUI.DestroyMethod param3)
 		{
 			func.BeginPCall();
 			func.Push(param0);
 			func.Push(param1);
 			func.Push(param2);
 			func.PCall();
-			UnityEngine.Object ret = (UnityEngine.Object)func.CheckObject(typeof(UnityEngine.Object));
+			object ret = func.CheckVariant();
+			param3 = (FairyGUI.DestroyMethod)func.CheckObject(typeof(FairyGUI.DestroyMethod));
 			func.EndPCall();
 			return ret;
 		}
 
-		public UnityEngine.Object CallWithSelf(string param0, string param1, System.Type param2)
+		public object CallWithSelf(string param0, string param1, System.Type param2, out FairyGUI.DestroyMethod param3)
 		{
 			func.BeginPCall();
 			func.Push(self);
@@ -1520,7 +1521,8 @@ public class DelegateFactory
 			func.Push(param1);
 			func.Push(param2);
 			func.PCall();
-			UnityEngine.Object ret = (UnityEngine.Object)func.CheckObject(typeof(UnityEngine.Object));
+			object ret = func.CheckVariant();
+			param3 = (FairyGUI.DestroyMethod)func.CheckObject(typeof(FairyGUI.DestroyMethod));
 			func.EndPCall();
 			return ret;
 		}
@@ -1530,7 +1532,11 @@ public class DelegateFactory
 	{
 		if (func == null)
 		{
-			FairyGUI.UIPackage.LoadResource fn = delegate(string param0, string param1, System.Type param2) { return null; };
+			FairyGUI.UIPackage.LoadResource fn = delegate(string param0, string param1, System.Type param2, out FairyGUI.DestroyMethod param3) 
+			{
+				param3 = default(FairyGUI.DestroyMethod);
+			return null;			};
+
 			return fn;
 		}
 

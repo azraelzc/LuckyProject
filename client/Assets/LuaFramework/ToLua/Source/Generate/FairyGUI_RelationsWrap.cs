@@ -190,11 +190,12 @@ public class FairyGUI_RelationsWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 3);
+			ToLua.CheckArgsCount(L, 4);
 			FairyGUI.Relations obj = (FairyGUI.Relations)ToLua.CheckObject<FairyGUI.Relations>(L, 1);
 			float arg0 = (float)LuaDLL.luaL_checknumber(L, 2);
 			float arg1 = (float)LuaDLL.luaL_checknumber(L, 3);
-			obj.OnOwnerSizeChanged(arg0, arg1);
+			bool arg2 = LuaDLL.luaL_checkboolean(L, 4);
+			obj.OnOwnerSizeChanged(arg0, arg1, arg2);
 			return 0;
 		}
 		catch (Exception e)
@@ -208,10 +209,11 @@ public class FairyGUI_RelationsWrap
 	{
 		try
 		{
-			ToLua.CheckArgsCount(L, 2);
+			ToLua.CheckArgsCount(L, 3);
 			FairyGUI.Relations obj = (FairyGUI.Relations)ToLua.CheckObject<FairyGUI.Relations>(L, 1);
-			FairyGUI.Utils.XML arg0 = (FairyGUI.Utils.XML)ToLua.CheckObject<FairyGUI.Utils.XML>(L, 2);
-			obj.Setup(arg0);
+			FairyGUI.Utils.ByteBuffer arg0 = (FairyGUI.Utils.ByteBuffer)ToLua.CheckObject<FairyGUI.Utils.ByteBuffer>(L, 2);
+			bool arg1 = LuaDLL.luaL_checkboolean(L, 3);
+			obj.Setup(arg0, arg1);
 			return 0;
 		}
 		catch (Exception e)

@@ -184,7 +184,6 @@ public static class CustomSettings
         _GT(typeof(GGroup)),
         _GT(typeof(GImage)),
         _GT(typeof(GLoader)),
-        _GT(typeof(PlayState)),
         _GT(typeof(GMovieClip)),
         _GT(typeof(TextFormat)),
         _GT(typeof(GTextField)),

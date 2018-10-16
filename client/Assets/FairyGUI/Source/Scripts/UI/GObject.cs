@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using FairyGUI.Utils;
-using DG.Tweening;
 
 namespace FairyGUI
 {
@@ -109,12 +108,12 @@ namespace FairyGUI
 		public EventListener onTouchEnd { get; private set; }
 
 		/// <summary>
-		/// Only available for mouse input: the cursor hovers over an object.
+		/// The cursor or finger hovers over an object.
 		/// </summary>
 		public EventListener onRollOver { get; private set; }
 
 		/// <summary>
-		/// Only available for mouse input: the cursor leave an object.
+		/// The cursor or finger leave an object.
 		/// </summary>
 		public EventListener onRollOut { get; private set; }
 
@@ -173,6 +172,11 @@ namespace FairyGUI
 		/// </summary>
 		public static GObject draggingObject { get; private set; }
 
+		/// <summary>
+		/// 
+		/// </summary>
+		public PackageItem packageItem;
+
 		float _x;
 		float _y;
 		float _z;
@@ -202,7 +206,6 @@ namespace FairyGUI
 		//Size的实现方式，有两种，0-GObject的w/h等于DisplayObject的w/h。1-GObject的sourceWidth/sourceHeight等于DisplayObject的w/h，剩余部分由scale实现
 		protected int _sizeImplType;
 
-		internal PackageItem packageItem;
 		internal protected bool underConstruct;
 		internal float _width;
 		internal float _height;
@@ -210,6 +213,7 @@ namespace FairyGUI
 		internal float _rawHeight;
 		internal bool _gearLocked;
 		internal float _sizePercentInGroup;
+		internal bool _disposed;
 
 		internal static uint _gInstanceCounter;
 
@@ -317,6 +321,20 @@ namespace FairyGUI
 		}
 
 		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="xv"></param>
+		/// <param name="yv"></param>
+		/// <param name="topLeft"></param>
+		public void SetXY(float xv, float yv, bool topLeftValue)
+		{
+			if (_pivotAsAnchor)
+				SetPosition(xv + _pivotX * _width, yv + _pivotY * _height, _z);
+			else
+				SetPosition(xv, yv, _z);
+		}
+
+		/// <summary>
 		/// change the x,y,z coordinates of the object relative to the local coordinates of the parent.
 		/// </summary>
 		/// <param name="xv">x value.</param>
@@ -382,7 +400,7 @@ namespace FairyGUI
 			else
 				r = this.root;
 
-			this.SetXY((int)((r.width - this.width) / 2), (int)((r.height - this.height) / 2));
+			this.SetXY((int)((r.width - this.width) / 2), (int)((r.height - this.height) / 2), true);
 			if (restraint)
 			{
 				this.AddRelation(r, RelationType.Center_Center);
@@ -468,7 +486,7 @@ namespace FairyGUI
 		/// </summary>
 		/// <param name="wv">Width value.</param>
 		/// <param name="hv">Height value.</param>
-		/// <param name="ignorePivot">If pivot is set, the object's positon will change when its size change. Set ignorePivot=false to keep the position.</param>
+		/// <param name="ignorePivot">If pivot is set, the object's positon will change when its size change. Set ignorePivot=true to keep the position.</param>
 		public void SetSize(float wv, float hv, bool ignorePivot)
 		{
 			if (_rawWidth != wv || _rawHeight != hv)
@@ -495,12 +513,12 @@ namespace FairyGUI
 					if (!_pivotAsAnchor)
 					{
 						if (!ignorePivot)
-							this.SetXY(_x - _pivotX * dWidth, _y - _pivotY * dHeight);
+							SetXY(_x - _pivotX * dWidth, _y - _pivotY * dHeight);
 						else
-							this.HandlePositionChanged();
+							HandlePositionChanged();
 					}
 					else
-						this.HandlePositionChanged();
+						HandlePositionChanged();
 				}
 
 				if (this is GGroup)
@@ -510,7 +528,7 @@ namespace FairyGUI
 
 				if (parent != null)
 				{
-					relations.OnOwnerSizeChanged(dWidth, dHeight);
+					relations.OnOwnerSizeChanged(dWidth, dHeight, _pivotAsAnchor || !ignorePivot);
 					parent.SetBoundsChangedFlag();
 					if (_group != null)
 						_group.SetBoundsChangedFlag(true);
@@ -530,6 +548,42 @@ namespace FairyGUI
 				hv = 0;
 			_width = wv;
 			_height = hv;
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public float xMin
+		{
+			get
+			{
+				return _pivotAsAnchor ? (_x - _width * _pivotX) : _x;
+			}
+			set
+			{
+				if (_pivotAsAnchor)
+					SetPosition(value + _width * _pivotX, _y, _z);
+				else
+					SetPosition(value, _y, _z);
+			}
+		}
+
+		/// <summary>
+		/// 
+		/// </summary>
+		public float yMin
+		{
+			get
+			{
+				return _pivotAsAnchor ? (_y - _height * _pivotY) : _y;
+			}
+			set
+			{
+				if (_pivotAsAnchor)
+					SetPosition(_x, value + _height * _pivotY, _z);
+				else
+					SetPosition(_x, value, _z);
+			}
 		}
 
 		/// <summary>
@@ -633,6 +687,15 @@ namespace FairyGUI
 		{
 			get { return new Vector2(_pivotX, _pivotY); }
 			set { SetPivot(value.x, value.y); }
+		}
+
+		public bool pivotAsAnchor
+		{
+			get { return _pivotAsAnchor; }
+			set
+			{
+				SetPivot(_pivotX, _pivotY, value);
+			}
 		}
 
 		/// <summary>
@@ -1394,11 +1457,10 @@ namespace FairyGUI
 				//fast
 				pt.x /= GRoot.contentScaleFactor;
 				pt.y /= GRoot.contentScaleFactor;
+				return pt;
 			}
 			else
 				return r.GlobalToLocal(pt);
-
-			return pt;
 		}
 
 		/// <summary>
@@ -1478,14 +1540,18 @@ namespace FairyGUI
 
 		virtual public void Dispose()
 		{
+			_disposed = true;
+
 			RemoveFromParent();
 			RemoveEventListeners();
 			relations.Dispose();
+			relations = null;
 			if (displayObject != null)
 			{
 				displayObject.gOwner = null;
 				displayObject.Dispose();
 			}
+			data = null;
 		}
 
 		public GImage asImage
@@ -1636,118 +1702,116 @@ namespace FairyGUI
 		{
 		}
 
-		virtual public void Setup_BeforeAdd(XML xml)
+		virtual public void Setup_BeforeAdd(ByteBuffer buffer, int beginPos)
 		{
-			string str;
-			string[] arr;
+			buffer.Seek(beginPos, 0);
+			buffer.Skip(5);
 
-			id = xml.GetAttribute("id");
-			name = xml.GetAttribute("name");
+			id = buffer.ReadS();
+			name = buffer.ReadS();
+			float f1 = buffer.ReadInt();
+			float f2 = buffer.ReadInt();
+			SetXY(f1, f2);
 
-			arr = xml.GetAttributeArray("xy");
-			if (arr != null)
-				this.SetXY(int.Parse(arr[0]), int.Parse(arr[1]));
-
-			arr = xml.GetAttributeArray("size");
-			if (arr != null)
+			if (buffer.ReadBool())
 			{
-				initWidth = int.Parse(arr[0]);
-				initHeight = int.Parse(arr[1]);
+				initWidth = buffer.ReadInt();
+				initHeight = buffer.ReadInt();
 				SetSize(initWidth, initHeight, true);
 			}
 
-			arr = xml.GetAttributeArray("restrictSize");
-			if (arr != null)
+			if (buffer.ReadBool())
 			{
-				minWidth = int.Parse(arr[0]);
-				maxWidth = int.Parse(arr[1]);
-				minHeight = int.Parse(arr[2]);
-				maxHeight = int.Parse(arr[3]);
+				minWidth = buffer.ReadInt();
+				maxWidth = buffer.ReadInt();
+				minHeight = buffer.ReadInt();
+				maxHeight = buffer.ReadInt();
 			}
 
-			arr = xml.GetAttributeArray("scale");
-			if (arr != null)
-				SetScale(float.Parse(arr[0]), float.Parse(arr[1]));
-
-			arr = xml.GetAttributeArray("skew");
-			if (arr != null)
-				this.skew = new Vector2(float.Parse(arr[0]), float.Parse(arr[1]));
-
-			str = xml.GetAttribute("rotation");
-			if (str != null)
-				this.rotation = int.Parse(str);
-
-			arr = xml.GetAttributeArray("pivot");
-			if (arr != null)
-				this.SetPivot(float.Parse(arr[0]), float.Parse(arr[1]), xml.GetAttributeBool("anchor"));
-
-			str = xml.GetAttribute("alpha");
-			if (str != null)
-				this.alpha = float.Parse(str);
-
-			this.touchable = xml.GetAttributeBool("touchable", true);
-			this.visible = xml.GetAttributeBool("visible", true);
-			this.grayed = xml.GetAttributeBool("grayed", false);
-
-			str = xml.GetAttribute("blend");
-			if (str != null)
-				this.blendMode = FieldTypes.ParseBlendMode(str);
-
-			str = xml.GetAttribute("filter");
-			if (str != null)
+			if (buffer.ReadBool())
 			{
-				switch (str)
-				{
-					case "color":
-						ColorFilter cf = new ColorFilter();
-						this.filter = cf;
-						arr = xml.GetAttributeArray("filterData");
-						cf.AdjustBrightness(float.Parse(arr[0]));
-						cf.AdjustContrast(float.Parse(arr[1]));
-						cf.AdjustSaturation(float.Parse(arr[2]));
-						cf.AdjustHue(float.Parse(arr[3]));
-						break;
-				}
+				f1 = buffer.ReadFloat();
+				f2 = buffer.ReadFloat();
+				SetScale(f1, f2);
 			}
 
-			str = xml.GetAttribute("tooltips");
+			if (buffer.ReadBool())
+			{
+				f1 = buffer.ReadFloat();
+				f2 = buffer.ReadFloat();
+				this.skew = new Vector2(f1, f2);
+			}
+
+			if (buffer.ReadBool())
+			{
+				f1 = buffer.ReadFloat();
+				f2 = buffer.ReadFloat();
+				SetPivot(f1, f2, buffer.ReadBool());
+			}
+
+			f1 = buffer.ReadFloat();
+			if (f1 != 1)
+				this.alpha = f1;
+
+			f1 = buffer.ReadFloat();
+			if (f1 != 0)
+				this.rotation = f1;
+
+			if (!buffer.ReadBool())
+				this.visible = false;
+			if (!buffer.ReadBool())
+				this.touchable = false;
+			if (buffer.ReadBool())
+				this.grayed = true;
+			this.blendMode = (BlendMode)buffer.ReadByte();
+
+			int filter = buffer.ReadByte();
+			if (filter == 1)
+			{
+				ColorFilter cf = new ColorFilter();
+				this.filter = cf;
+
+				cf.AdjustBrightness(buffer.ReadFloat());
+				cf.AdjustContrast(buffer.ReadFloat());
+				cf.AdjustSaturation(buffer.ReadFloat());
+				cf.AdjustHue(buffer.ReadFloat());
+			}
+
+			string str = buffer.ReadS();
 			if (str != null)
-				this.tooltips = str;
+				this.data = str;
 		}
 
-		static Dictionary<string, int> GearXMLKeys = new Dictionary<string, int>()
+		virtual public void Setup_AfterAdd(ByteBuffer buffer, int beginPos)
 		{
-			{"gearDisplay",0},
-			{"gearXY",1},
-			{"gearSize",2},
-			{"gearLook",3},
-			{"gearColor",4},
-			{"gearAni",5},
-			{"gearText",6},
-			{"gearIcon",7}
-		};
+			buffer.Seek(beginPos, 1);
 
-		virtual public void Setup_AfterAdd(XML xml)
-		{
-			string str;
-
-			str = xml.GetAttribute("group");
+			string str = buffer.ReadS();
 			if (str != null)
-				group = parent.GetChildById(str) as GGroup;
+				this.tooltips = str;
 
-			XMLList.Enumerator et = xml.GetEnumerator();
-			XML cxml;
-			int index;
-			while (et.MoveNext())
+			int groupId = buffer.ReadShort();
+			if (groupId >= 0)
+				group = parent.GetChildAt(groupId) as GGroup;
+
+			buffer.Seek(beginPos, 2);
+
+			int cnt = buffer.ReadShort();
+			for (int i = 0; i < cnt; i++)
 			{
-				cxml = et.Current;
-				if (GearXMLKeys.TryGetValue(cxml.name, out index))
-					GetGear(index).Setup(cxml);
+				int nextPos = buffer.ReadShort();
+				nextPos += buffer.position;
+
+				GearBase gear = GetGear(buffer.ReadByte());
+				gear.Setup(buffer);
+
+				buffer.position = nextPos;
 			}
 		}
 
 		#region Drag support
 		Vector2 _dragTouchStartPos;
+		bool _dragTesting;
 
 		static Vector2 sGlobalDragStart = new Vector2();
 		static Rect sGlobalRect = new Rect();
@@ -1779,8 +1843,12 @@ namespace FairyGUI
 				tmp.onDragEnd.Call();
 			}
 
+			onTouchMove.Add(__touchMove);
+			onTouchEnd.Add(__touchEnd);
+
 			sGlobalDragStart = Stage.inst.GetTouchPosition(touchId);
 			sGlobalRect = this.LocalToGlobal(new Rect(0, 0, this.width, this.height));
+			_dragTesting = false;
 
 			draggingObject = this;
 			Stage.inst.AddTouchMonitor(touchId, this);
@@ -1790,7 +1858,7 @@ namespace FairyGUI
 		{
 			if (draggingObject == this)
 			{
-				Stage.inst.RemoveTouchMonitor(this);
+				_dragTesting = false;
 				draggingObject = null;
 			}
 		}
@@ -1799,6 +1867,7 @@ namespace FairyGUI
 		{
 			InputEvent evt = context.inputEvent;
 			_dragTouchStartPos = evt.position;
+			_dragTesting = true;
 			context.CaptureTouch();
 		}
 
@@ -1806,7 +1875,7 @@ namespace FairyGUI
 		{
 			InputEvent evt = context.inputEvent;
 
-			if (draggingObject != this)
+			if (_dragTesting && draggingObject != this)
 			{
 				int sensitivity;
 				if (Stage.touchScreen)
@@ -1817,6 +1886,7 @@ namespace FairyGUI
 					&& Mathf.Abs(_dragTouchStartPos.y - evt.y) < sensitivity)
 					return;
 
+				_dragTesting = false;
 				if (!onDragStart.Call(evt.touchId))
 					DragBegin(evt.touchId);
 			}
@@ -1870,72 +1940,50 @@ namespace FairyGUI
 		}
 		#endregion
 
-		#region Tween Support
-		public Tweener TweenMove(Vector2 endValue, float duration)
+		#region Tween Helpers
+		public GTweener TweenMove(Vector2 endValue, float duration)
 		{
-			return DOTween.To(() => this.xy, x => this.xy = x, endValue, duration)
-				.SetOptions(_pixelSnapping)
-				.SetUpdate(true)
-				.SetTarget(this);
+			return GTween.To(this.xy, endValue, duration).SetTarget(this, TweenPropType.XY);
 		}
 
-		public Tweener TweenMoveX(float endValue, float duration)
+		public GTweener TweenMoveX(float endValue, float duration)
 		{
-			return DOTween.To(() => this.x, x => this.x = x, endValue, duration)
-				.SetOptions(_pixelSnapping)
-				.SetUpdate(true)
-				.SetTarget(this);
+			return GTween.To(_x, endValue, duration).SetTarget(this, TweenPropType.X);
 		}
 
-		public Tweener TweenMoveY(float endValue, float duration)
+		public GTweener TweenMoveY(float endValue, float duration)
 		{
-			return DOTween.To(() => this.y, x => this.y = x, endValue, duration)
-				.SetOptions(_pixelSnapping)
-				.SetUpdate(true)
-				.SetTarget(this);
+			return GTween.To(_y, endValue, duration).SetTarget(this, TweenPropType.Y);
 		}
 
-		public Tweener TweenScale(Vector2 endValue, float duration)
+		public GTweener TweenScale(Vector2 endValue, float duration)
 		{
-			return DOTween.To(() => this.scale, x => this.scale = x, endValue, duration)
-				.SetUpdate(true)
-				.SetTarget(this);
+			return GTween.To(this.scale, endValue, duration).SetTarget(this, TweenPropType.Scale);
 		}
 
-		public Tweener TweenScaleX(float endValue, float duration)
+		public GTweener TweenScaleX(float endValue, float duration)
 		{
-			return DOTween.To(() => this.scaleX, x => this.scaleX = x, endValue, duration)
-				.SetUpdate(true)
-				.SetTarget(this);
+			return GTween.To(_scaleX, endValue, duration).SetTarget(this, TweenPropType.ScaleX);
 		}
 
-		public Tweener TweenScaleY(float endValue, float duration)
+		public GTweener TweenScaleY(float endValue, float duration)
 		{
-			return DOTween.To(() => this.scaleY, x => this.scaleY = x, endValue, duration)
-				.SetUpdate(true)
-				.SetTarget(this);
+			return GTween.To(_scaleY, endValue, duration).SetTarget(this, TweenPropType.ScaleY);
 		}
 
-		public Tweener TweenResize(Vector2 endValue, float duration)
+		public GTweener TweenResize(Vector2 endValue, float duration)
 		{
-			return DOTween.To(() => this.size, x => this.size = x, endValue, duration)
-				.SetOptions(_pixelSnapping)
-				.SetUpdate(true)
-				.SetTarget(this);
+			return GTween.To(this.size, endValue, duration).SetTarget(this, TweenPropType.Size);
 		}
 
-		public Tweener TweenFade(float endValue, float duration)
+		public GTweener TweenFade(float endValue, float duration)
 		{
-			return DOTween.To(() => this.alpha, x => this.alpha = x, endValue, duration)
-				.SetUpdate(true)
-				.SetTarget(this);
+			return GTween.To(_alpha, endValue, duration).SetTarget(this, TweenPropType.Alpha);
 		}
 
-		public Tweener TweenRotate(float endValue, float duration)
+		public GTweener TweenRotate(float endValue, float duration)
 		{
-			return DOTween.To(() => this.rotation, x => this.rotation = x, endValue, duration)
-				.SetUpdate(true)
-				.SetTarget(this);
+			return GTween.To(_rotation, endValue, duration).SetTarget(this, TweenPropType.Rotation);
 		}
 		#endregion
 	}

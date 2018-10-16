@@ -113,7 +113,6 @@ public static class LuaBinder
 		FairyGUI_GGroupWrap.Register(L);
 		FairyGUI_GImageWrap.Register(L);
 		FairyGUI_GLoaderWrap.Register(L);
-		FairyGUI_PlayStateWrap.Register(L);
 		FairyGUI_GMovieClipWrap.Register(L);
 		FairyGUI_TextFormatWrap.Register(L);
 		FairyGUI_GTextFieldWrap.Register(L);

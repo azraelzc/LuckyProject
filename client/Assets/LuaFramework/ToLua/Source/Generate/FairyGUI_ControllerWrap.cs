@@ -7,6 +7,7 @@ public class FairyGUI_ControllerWrap
 	public static void Register(LuaState L)
 	{
 		L.BeginClass(typeof(FairyGUI.Controller), typeof(FairyGUI.EventDispatcher));
+		L.RegFunction("Dispose", Dispose);
 		L.RegFunction("SetSelectedIndex", SetSelectedIndex);
 		L.RegFunction("SetSelectedPage", SetSelectedPage);
 		L.RegFunction("GetPageName", GetPageName);
@@ -48,6 +49,22 @@ public class FairyGUI_ControllerWrap
 			{
 				return LuaDLL.luaL_throw(L, "invalid arguments to ctor method: FairyGUI.Controller.New");
 			}
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int Dispose(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 1);
+			FairyGUI.Controller obj = (FairyGUI.Controller)ToLua.CheckObject<FairyGUI.Controller>(L, 1);
+			obj.Dispose();
+			return 0;
 		}
 		catch (Exception e)
 		{
@@ -251,7 +268,7 @@ public class FairyGUI_ControllerWrap
 		{
 			ToLua.CheckArgsCount(L, 2);
 			FairyGUI.Controller obj = (FairyGUI.Controller)ToLua.CheckObject<FairyGUI.Controller>(L, 1);
-			FairyGUI.Utils.XML arg0 = (FairyGUI.Utils.XML)ToLua.CheckObject<FairyGUI.Utils.XML>(L, 2);
+			FairyGUI.Utils.ByteBuffer arg0 = (FairyGUI.Utils.ByteBuffer)ToLua.CheckObject<FairyGUI.Utils.ByteBuffer>(L, 2);
 			obj.Setup(arg0);
 			return 0;
 		}

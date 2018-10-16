@@ -236,10 +236,13 @@ namespace FairyGUI
 				if (_visible != value)
 				{
 					_visible = value;
+					_outlineChanged = true;
 					if (parent != null && _visible)
 					{
 						gameObject.SetActive(true);
-						this.InvalidateBatchingState();
+						InvalidateBatchingState();
+						if (this is Container)
+							((Container)this).InvalidateBatchingState(true);
 					}
 					else
 						gameObject.SetActive(false);
@@ -935,7 +938,7 @@ namespace FairyGUI
 				}
 				paintingGraphics.material = _paintingMaterial;
 
-					if (this is Container)
+				if (this is Container)
 				{
 					((Container)this).SetChildrenLayer(CaptureCamera.hiddenLayer);
 					((Container)this).UpdateBatchingFlags();
@@ -1346,10 +1349,10 @@ namespace FairyGUI
 					if (paintingTexture == null || paintingTexture.width != textureWidth || paintingTexture.height != textureHeight)
 					{
 						if (paintingTexture != null)
-							paintingTexture.Dispose(true);
+							paintingTexture.Dispose();
 						if (textureWidth > 0 && textureHeight > 0)
 						{
-							paintingTexture = new NTexture(CaptureCamera.CreateRenderTexture(textureWidth, textureHeight, false));
+							paintingTexture = new NTexture(CaptureCamera.CreateRenderTexture(textureWidth, textureHeight, UIConfig.depthSupportForPaintingMode));
 							Stage.inst.MonitorTexture(paintingTexture);
 						}
 						else
@@ -1359,9 +1362,10 @@ namespace FairyGUI
 
 					if (paintingTexture != null)
 					{
-						paintingGraphics.SetOneQuadMesh(
+						paintingGraphics.DrawRect(
 							new Rect(-_paintingMargin.left, -_paintingMargin.top, paintingTexture.width, paintingTexture.height),
 							new Rect(0, 0, 1, 1), Color.white);
+						paintingGraphics.UpdateMesh();
 					}
 					else
 						paintingGraphics.ClearMesh();
@@ -1469,17 +1473,17 @@ namespace FairyGUI
 			if (paintingGraphics != null)
 			{
 				if (paintingGraphics.texture != null)
-					paintingGraphics.texture.Dispose(true);
+					paintingGraphics.texture.Dispose();
 				if (_paintingMaterial != null)
-					Material.Destroy(_paintingMaterial);
+					Object.Destroy(_paintingMaterial);
 
 				paintingGraphics.Dispose();
 				if (paintingGraphics.gameObject != this.gameObject)
 				{
 					if (Application.isPlaying)
-						GameObject.Destroy(paintingGraphics.gameObject);
+						Object.Destroy(paintingGraphics.gameObject);
 					else
-						GameObject.DestroyImmediate(paintingGraphics.gameObject);
+						Object.DestroyImmediate(paintingGraphics.gameObject);
 				}
 			}
 			DestroyGameObject();
