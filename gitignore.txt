@@ -5,3 +5,5 @@ client/Library
 client/Temp
 client/.vs
 client/Assets/StreamingAssets/AssetBundle
+client/Assets/Resources
+UILucky/.objs

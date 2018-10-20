@@ -374,12 +374,24 @@ namespace LuaFramework {
         {
 #if UNITY_EDITOR
             string addPath = path + "&" + pkgName + "/" + pkgName;
-            //UIPackage p = UIPackage.AddPackage(addPath);
             UIPackage.AddPackage(addPath, (string name, string extension, System.Type type,out DestroyMethod destroyMethod) =>
             {
                 destroyMethod = DestroyMethod.None;
                 string loadPath = "Assets/AbAsset/" + name + extension;
                 return UnityEditor.AssetDatabase.LoadAssetAtPath(loadPath, type);
+            });
+            if (luaFunc != null)
+            {
+                luaFunc.Call(addPath);
+                luaFunc.Dispose();
+            }
+#elif UNITY_STANDALONE
+            string addPath = path + "&" + pkgName + "/" + pkgName;
+            UIPackage.AddPackage(addPath, (string name, string extension, System.Type type,out DestroyMethod destroyMethod) =>
+            {
+                destroyMethod = DestroyMethod.None;
+                string loadPath = "AbAsset/" + name;
+                return Resources.Load(loadPath, type);
             });
             if (luaFunc != null)
             {

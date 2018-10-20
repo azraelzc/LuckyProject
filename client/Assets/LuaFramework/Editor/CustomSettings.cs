@@ -86,7 +86,7 @@ public static class CustomSettings
         _GT(typeof(Component)),
         _GT(typeof(Transform)),
         _GT(typeof(Material)),
-        _GT(typeof(Light)),
+        //_GT(typeof(Light)),//出win包报错
         _GT(typeof(Rigidbody)),
         _GT(typeof(Camera)),
         _GT(typeof(AudioSource)),
@@ -146,7 +146,7 @@ public static class CustomSettings
         _GT(typeof(PlayMode)),
         _GT(typeof(WrapMode)),
 
-        _GT(typeof(QualitySettings)),
+        //_GT(typeof(QualitySettings)),//出win包报错
         _GT(typeof(RenderSettings)),
         _GT(typeof(BlendWeights)),
         _GT(typeof(RenderTexture)),

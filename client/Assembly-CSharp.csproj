@@ -427,7 +427,6 @@
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_InputWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_KeyCodeWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_LightTypeWrap.cs" />
-    <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_LightWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_MaterialWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_MeshColliderWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_MeshRendererWrap.cs" />
@@ -435,7 +434,6 @@
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_ParticleSystemWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_PhysicsWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_PlayModeWrap.cs" />
-    <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_QualitySettingsWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_QueueModeWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_RectTransformWrap.cs" />
     <Compile Include="Assets\LuaFramework\ToLua\Source\Generate\UnityEngine_RendererWrap.cs" />

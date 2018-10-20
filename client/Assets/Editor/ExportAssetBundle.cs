@@ -73,4 +73,82 @@ public class ExportAssetBundle {
             }
         }
     }
+
+
+    [MenuItem("Custom Editor/CopyPCResouces")]
+    static void CopyPCResouces()
+    {
+        //复制资源
+        {
+            string path = Application.dataPath + "/AbAsset";
+            string outPath = Application.dataPath + "/Resources/AbAsset";
+            CopyOldLabFilesToNewLab(path, outPath);
+        }
+        Debug.Log("======CopyPCResouces end=======");
+    }
+
+    /// <summary>
+    /// 拷贝oldlab的文件到newlab下面
+    /// </summary>
+    /// <param name="sourcePath">lab文件所在目录(@"~\labs\oldlab")</param>
+    /// <param name="savePath">保存的目标目录(@"~\labs\newlab")</param>
+    /// <returns>返回:true-拷贝成功;false:拷贝失败</returns>
+    public static bool CopyOldLabFilesToNewLab(string sourcePath, string savePath)
+    {
+        if (!Directory.Exists(savePath))
+        {
+            Directory.CreateDirectory(savePath);
+        }
+
+        #region //拷贝labs文件夹到savePath下
+        try
+        {
+            string[] labDirs = Directory.GetDirectories(sourcePath);//目录
+            string[] labFiles = Directory.GetFiles(sourcePath);//文件
+            if (labFiles.Length > 0)
+            {
+                for (int i = 0; i < labFiles.Length; i++)
+                {
+                    string path = labFiles[i];
+                    if (!path.EndsWith(".meta"))//排除.meta文件
+                    {
+                        File.Copy(sourcePath + "\\" + Path.GetFileName(labFiles[i]), savePath + "\\" + Path.GetFileName(labFiles[i]), true);
+                    }
+                }
+            }
+            if (labDirs.Length > 0)
+            {
+                for (int j = 0; j < labDirs.Length; j++)
+                {
+                    Directory.GetDirectories(sourcePath + "\\" + Path.GetFileName(labDirs[j]));
+
+                    //递归调用
+                    CopyOldLabFilesToNewLab(sourcePath + "\\" + Path.GetFileName(labDirs[j]), savePath + "\\" + Path.GetFileName(labDirs[j]));
+                }
+            }
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+        #endregion
+        return true;
+    }
+
+    [MenuItem("Custom Editor/CopyLuaToPCPackage")]
+    static void CopyLuaToPCPackage()
+    {
+        //复制lua
+        {
+            string[] fromPaths = { "Lua", "ToLua/Lua" };
+            string[] outPaths = { "D:/project/GameEXE", "D:/project/GameEXE/Lua" };
+            for (int i = 0; i < fromPaths.Length; i++)
+            {
+                string fromPath = Application.dataPath + "/LuaFramework/" + fromPaths[i];
+                string outPath = outPaths[i];
+                CopyOldLabFilesToNewLab(fromPath, outPath);
+            }
+        }
+        Debug.Log("======CopyLuaToPCPackage end=======");
+    }
 }
