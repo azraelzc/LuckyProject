@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1334,750">
   <displayList>
-    <component id="n0_iuic" name="btnBag" src="iuic2" xy="613,311"/>
-    <text id="n1_uw0r" name="n1" xy="557,417" size="291,27" fontSize="20" text="11111111111111111111111111"/>
+    <component id="n0_iuic" name="btnBag" src="iuic2" fileName="Components/BtnRole.xml" xy="30,32"/>
+    <component id="n4_znl3" name="btnDestroyHouse" src="o08b2" fileName="Componets/BtnBlue.xml" pkg="ru6184xx" xy="23,125">
+      <Button title="拆房子"/>
+    </component>
   </displayList>
 </component>

@@ -104,7 +104,7 @@ function table.deepcopy(object)
 
 end
 
-function table.tostring(tbl, indent, limit, depth, jstack)
+function table.gettostring(tbl, indent, limit, depth, jstack)
 	limit   = limit  or 1000
 	depth   = depth  or 7
 	jstack  = jstack or {}
@@ -140,6 +140,9 @@ function table.tostring(tbl, indent, limit, depth, jstack)
 		if type(tbl) == "string" then tbl = string.format("%q", tbl) end -- quote strings
 		table.insert(output, tostring(tbl) .. ",\n")
 	end
-
 	return table.concat(output)
+end
+
+function table.tostring(tbl, indent, limit, depth, jstack)
+	print(table.gettostring(tbl, indent, limit, depth, jstack))
 end

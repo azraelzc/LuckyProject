@@ -28,6 +28,7 @@ public class FairyGUI_GObjectWrap
 		L.RegFunction("GlobalToLocal", GlobalToLocal);
 		L.RegFunction("LocalToRoot", LocalToRoot);
 		L.RegFunction("RootToLocal", RootToLocal);
+		L.RegFunction("MoseClickToGRoot", MoseClickToGRoot);
 		L.RegFunction("WorldToLocal", WorldToLocal);
 		L.RegFunction("TransformPoint", TransformPoint);
 		L.RegFunction("TransformRect", TransformRect);
@@ -656,6 +657,24 @@ public class FairyGUI_GObjectWrap
 			UnityEngine.Vector2 arg0 = ToLua.ToVector2(L, 2);
 			FairyGUI.GRoot arg1 = (FairyGUI.GRoot)ToLua.CheckObject<FairyGUI.GRoot>(L, 3);
 			UnityEngine.Vector2 o = obj.RootToLocal(arg0, arg1);
+			ToLua.Push(L, o);
+			return 1;
+		}
+		catch (Exception e)
+		{
+			return LuaDLL.toluaL_exception(L, e);
+		}
+	}
+
+	[MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+	static int MoseClickToGRoot(IntPtr L)
+	{
+		try
+		{
+			ToLua.CheckArgsCount(L, 2);
+			FairyGUI.GObject obj = (FairyGUI.GObject)ToLua.CheckObject<FairyGUI.GObject>(L, 1);
+			UnityEngine.Vector2 arg0 = ToLua.ToVector2(L, 2);
+			UnityEngine.Vector2 o = obj.MoseClickToGRoot(arg0);
 			ToLua.Push(L, o);
 			return 1;
 		}

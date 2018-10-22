@@ -134,6 +134,9 @@ function UIManager:CreatUI(uiPanel,cb)
         local ui = UIPackage.CreateObject(uiPanel.pkgName, uiPanel.name)
         GRoot.inst:AddChild(ui)
         ui.position = Vector3.zero
+        if uiPanel.isFullScreen then
+            ui:MakeFullScreen()
+        end
         panelCtrl:onInit(ui)
         if cb ~= nil then
             cb(panelCtrl)

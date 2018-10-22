@@ -1482,12 +1482,19 @@ namespace FairyGUI
 			return GlobalToLocal(pt);
 		}
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="pt"></param>
-		/// <returns></returns>
-		public Vector2 WorldToLocal(Vector3 pt)
+        public Vector2 MoseClickToGRoot(Vector2 pt)
+        {
+            pt.x /= GRoot.contentScaleFactor;
+            pt.y /= GRoot.contentScaleFactor;
+            return pt;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pt"></param>
+        /// <returns></returns>
+        public Vector2 WorldToLocal(Vector3 pt)
 		{
 			return WorldToLocal(pt, HitTestContext.cachedMainCamera);
 		}
