@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="100,100" extention="Button">
+  <displayList>
+    <loader id="n0_u60z" name="icon" xy="10,0" size="80,80" url="ui://d0crf0h6u60z6" fill="scaleFree">
+      <relation target="" sidePair="width-width,height-height"/>
+    </loader>
+    <text id="n1_u60z" name="title" xy="0,73" size="100,27" fontSize="20" align="center" vAlign="middle" autoSize="none" text=""/>
+  </displayList>
+  <Button/>
+</component>

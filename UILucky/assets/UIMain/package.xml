@@ -4,6 +4,10 @@
     <component id="iuic0" name="Main.xml" path="/" exported="true"/>
     <image id="iuic1" name="btn_juese.png" path="/Images/"/>
     <component id="iuic2" name="BtnRole.xml" path="/Components/"/>
+    <image id="u60z3" name="you.png" path="/Images/"/>
+    <component id="u60z4" name="BtnBuilding.xml" path="/Components/"/>
+    <component id="u60z5" name="BtnMainCommon.xml" path="/Components/"/>
+    <image id="u60z6" name="btn_main.png" path="/Images/"/>
   </resources>
   <publish name="UIMain" path="..\client\Assets\AbAsset\UIRes\&amp;UIMain"/>
 </packageDescription>

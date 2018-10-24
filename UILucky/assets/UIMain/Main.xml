@@ -1,9 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1334,750">
+  <controller name="mainBtnCtrl" pages="0,,1," selected="1"/>
+  <controller name="mainIconShowCtrl" pages="0,,1," selected="0"/>
   <displayList>
-    <component id="n0_iuic" name="btnBag" src="iuic2" fileName="Components/BtnRole.xml" xy="30,32"/>
-    <component id="n4_znl3" name="btnDestroyHouse" src="o08b2" fileName="Componets/BtnBlue.xml" pkg="ru6184xx" xy="23,125">
-      <Button title="拆房子"/>
+    <graph id="n15_u60z" name="playerClickArea" xy="0,0" size="1334,750" alpha="0" type="rect"/>
+    <component id="n0_iuic" name="btnBag" src="iuic2" fileName="Components/BtnRole.xml" xy="25,19">
+      <gearDisplay controller="mainIconShowCtrl" pages="0"/>
     </component>
+    <loader id="n5_u60z" name="player" xy="11,114" size="200,200" url="ui://d0crf0h6u60z3" autoSize="true"/>
+    <component id="n11_u60z" name="btnMain1" src="u60z5" fileName="Components/BtnMainCommon.xml" xy="429,145">
+      <gearXY controller="mainBtnCtrl" pages="0" values="575,325" default="429,145" tween="true"/>
+      <Button title="详情"/>
+    </component>
+    <component id="n12_u60z" name="btnMain2" src="u60z5" fileName="Components/BtnMainCommon.xml" xy="542,120">
+      <gearXY controller="mainBtnCtrl" pages="0" values="575,325" default="542,120" tween="true"/>
+      <Button title="天赋"/>
+    </component>
+    <component id="n13_u60z" name="btnMain3" src="u60z5" fileName="Components/BtnMainCommon.xml" xy="667,136">
+      <gearXY controller="mainBtnCtrl" pages="0" values="575,325" default="667,136" tween="true"/>
+      <Button title="驻守"/>
+    </component>
+    <component id="n14_u60z" name="btnMain4" src="u60z5" fileName="Components/BtnMainCommon.xml" xy="777,202">
+      <gearXY controller="mainBtnCtrl" pages="0" values="575,325" default="777,202" tween="true"/>
+      <Button title="移动"/>
+    </component>
+    <component id="n6_u60z" name="btnBuilding" src="u60z4" fileName="Components/BtnBuilding.xml" xy="522,278"/>
+    <component id="n16_u60z" name="n16" src="u60zs9" fileName="Componets/MoneyBar.xml" pkg="ru6184xx" xy="259,16"/>
   </displayList>
 </component>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="u89g5o68" jpegQuality="80" compressPNG="true">
+  <resources>
+    <component id="u60z0" name="Details.xml" path="/" exported="true"/>
+    <component id="u60z1" name="BtnTab.xml" path="/Components/"/>
+  </resources>
+  <publish name="UIDetails" path="..\client\Assets\AbAsset\UIRes\&amp;UIDetails"/>
+</packageDescription>

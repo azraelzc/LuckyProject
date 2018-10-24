@@ -7,6 +7,7 @@
     <image id="10vls5" name="btn_yellow.png" path="/Images/" exported="true" scale="9grid" scale9grid="50,4,17,7"/>
     <component id="10vls6" name="BtnYellow.xml" path="/Componets/" exported="true"/>
     <component id="10vls7" name="BtnClose.xml" path="/Componets/" exported="true"/>
+    <component id="u60zs9" name="MoneyBar.xml" path="/Componets/" exported="true"/>
   </resources>
   <publish name="Common" path="..\client\Assets\AbAsset\UIRes\&amp;Common"/>
 </packageDescription>

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<packageDescription id="dazyk2dj" jpegQuality="80" compressPNG="true">
-  <resources>
-    <component id="znl30" name="DestroyHouse.xml" path="/" exported="true"/>
-    <image id="znl31" name="you.png" path="/Images/"/>
-  </resources>
-  <publish name="UIDestroyHouse" path="..\client\Assets\AbAsset\UIRes\&amp;UIDestroyHouse"/>
-</packageDescription>

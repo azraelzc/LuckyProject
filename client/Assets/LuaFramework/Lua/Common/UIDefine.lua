@@ -11,9 +11,9 @@ UIDefine.UIType =
 UIDefine.UIPanel =
 {
     Main = {name="Main", uType = UIDefine.UIType.Hud, pkgName="UIMain",classPath = "View/UIMain/Main",id=10000,cache = 1,isFullScreen = true },
-    Bag = {name="Bag", uType = UIDefine.UIType.Window, pkgName="UIBag",classPath = "View/UIBag/Bag",id=10100,cache = 1,isFullScreen = true  },
-    Attribute = {name="Attribute", uType = UIDefine.UIType.Window, pkgName="UIAttribute",classPath = "View/UIAttribute/Attribute",id=10200,cache = 0 ,isFullScreen = true },
-    DestroyHouse = {name="DestroyHouse", uType = UIDefine.UIType.Window, pkgName="UIDestroyHouse",classPath = "View/UIDestroyHouse/DestroyHouse",id=10300,cache = 1 ,isFullScreen = true },
+    Bag = {name="Bag", uType = UIDefine.UIType.Window, pkgName="UIBag",classPath = "View/UIBag/Bag",id=10100,cache = 1},
+    Attribute = {name="Attribute", uType = UIDefine.UIType.Window, pkgName="UIAttribute",classPath = "View/UIAttribute/Attribute",id=10200,cache = 0},
+    UIDetails = {name="Details", uType = UIDefine.UIType.Window, pkgName="UIDetails",classPath = "View/UIDetails/Details",id=10300,cache = 0},
 }
 
 return UIDefine
