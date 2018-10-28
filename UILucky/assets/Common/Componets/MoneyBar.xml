@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="800,50">
+<component size="820,70">
   <displayList>
-    <graph id="n0_u60z" name="n0" xy="0,0" size="800,50" type="rect" fillColor="#ff3333cc"/>
+    <image id="n1_j9ma" name="n1" src="j9mase" fileName="Images/moneybg.png" xy="28,5" group="n4_j9ma"/>
+    <image id="n2_j9ma" name="n2" src="j9masd" fileName="Images/icon_diamond.png" xy="0,1" group="n4_j9ma"/>
+    <image id="n15_j9ma" name="n15" src="j9masa" fileName="Images/btn_add.png" xy="212,8" group="n4_j9ma"/>
+    <text id="n3_j9ma" name="n3" xy="53,22" size="143,32" group="n4_j9ma" fontSize="25" color="#f7f4d8" align="center" vAlign="middle" autoSize="height" strokeColor="#000000" text="99999"/>
+    <group id="n4_j9ma" name="n4" xy="0,1" size="268,71"/>
+    <image id="n5_j9ma" name="n5" src="j9mase" fileName="Images/moneybg.png" xy="304,5" group="n8_j9ma"/>
+    <image id="n13_j9ma" name="n13" src="j9masc" fileName="Images/icon_gold.png" xy="272,1" group="n8_j9ma"/>
+    <image id="n16_j9ma" name="n16" src="j9masa" fileName="Images/btn_add.png" xy="489,10" group="n8_j9ma"/>
+    <text id="n7_j9ma" name="n7" xy="329,22" size="143,32" group="n8_j9ma" fontSize="25" color="#f7f4d8" align="center" vAlign="middle" autoSize="height" strokeColor="#000000" text="99999"/>
+    <group id="n8_j9ma" name="n8" xy="272,1" size="273,71"/>
+    <image id="n9_j9ma" name="n9" src="j9mase" fileName="Images/moneybg.png" xy="573,5" group="n12_j9ma"/>
+    <image id="n14_j9ma" name="n14" src="j9masb" fileName="Images/icon_population.png" xy="549,1" group="n12_j9ma"/>
+    <image id="n17_j9ma" name="n17" src="j9masa" fileName="Images/btn_add.png" xy="758,10" group="n12_j9ma"/>
+    <text id="n11_j9ma" name="n11" xy="599,22" size="143,32" group="n12_j9ma" fontSize="25" color="#f7f4d8" align="center" vAlign="middle" autoSize="height" strokeColor="#000000" text="99999"/>
+    <group id="n12_j9ma" name="n12" xy="549,1" size="265,71"/>
   </displayList>
 </component>

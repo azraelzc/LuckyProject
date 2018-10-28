@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="106,130" extention="Button">
+  <displayList>
+    <loader id="n0_j9ma" name="icon" xy="0,0" size="56,59" url="ui://d0crf0h6j9ma8"/>
+    <text id="n1_j9ma" name="title" xy="0,92" size="108,39" font="Microsoft YaHei" fontSize="30" color="#f7f4d8" align="center" vAlign="middle" autoSize="none" strokeColor="#000000" text="回城"/>
+  </displayList>
+  <Button/>
+</component>

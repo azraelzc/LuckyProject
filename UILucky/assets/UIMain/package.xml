@@ -8,6 +8,16 @@
     <component id="u60z4" name="BtnBuilding.xml" path="/Components/"/>
     <component id="u60z5" name="BtnMainCommon.xml" path="/Components/"/>
     <image id="u60z6" name="btn_main.png" path="/Images/"/>
+    <image id="j9ma7" name="bg.png" path="/Images/"/>
+    <image id="j9ma8" name="icon_back.png" path="/Images/" exported="true"/>
+    <image id="j9ma9" name="icon_creat.png" path="/Images/" exported="true"/>
+    <image id="j9maa" name="pic_building.png" path="/Images/"/>
+    <image id="j9mab" name="headBg.png" path="/Images/"/>
+    <image id="j9mac" name="open.png" path="/Images/"/>
+    <image id="j9mad" name="mainBtn.png" path="/Images/"/>
+    <component id="j9mae" name="BtnOther.xml" path="/Components/"/>
+    <component id="j9maf" name="head.xml" path="/Components/"/>
+    <image id="sk7ng" name="7-2.png" path="/Images/"/>
   </resources>
   <publish name="UIMain" path="..\client\Assets\AbAsset\UIRes\&amp;UIMain"/>
 </packageDescription>

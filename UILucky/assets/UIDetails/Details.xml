@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="1334,750">
+<component size="1334,750" designImage="ui://u89g5o68lcqy5">
   <controller name="tabCtrl" pages="0,,1,,2," selected="1"/>
   <displayList>
-    <graph id="n0_u60z" name="n0" xy="258,116" size="912,491" type="rect"/>
-    <component id="n1_u60z" name="close" src="10vls7" fileName="Componets/BtnClose.xml" pkg="ru6184xx" xy="1131,88"/>
-    <component id="n2_u60z" name="btnTab1" src="u60z1" fileName="Components/BtnTab.xml" xy="283,138">
+    <image id="n5_lcqy" name="n5" src="hhv04" fileName="Images/bg.png" xy="150,90" size="1046,556"/>
+    <component id="n1_u60z" name="close" src="10vls7" fileName="Componets/BtnClose.xml" pkg="ru6184xx" xy="1085,134" size="60,60"/>
+    <component id="n2_u60z" name="btnTab1" src="u60z1" fileName="Components/BtnTab.xml" xy="190,151">
       <Button title="建筑" controller="tabCtrl" page="0"/>
     </component>
-    <component id="n3_u60z" name="btnTab2" src="u60z1" fileName="Components/BtnTab.xml" xy="442,139">
+    <component id="n3_u60z" name="btnTab2" src="u60z1" fileName="Components/BtnTab.xml" xy="361,151">
       <Button checked="true" title="天赋" controller="tabCtrl" page="1"/>
     </component>
-    <component id="n4_u60z" name="btnTab3" src="u60z1" fileName="Components/BtnTab.xml" xy="609,139">
+    <component id="n4_u60z" name="btnTab3" src="u60z1" fileName="Components/BtnTab.xml" xy="529,151" size="150,60">
       <Button title="驻守" controller="tabCtrl" page="2"/>
     </component>
+    <image id="n6_lcqy" name="n6" src="lcqy6" fileName="Images/talend.jpg" xy="169,224" size="1005,398">
+      <gearDisplay controller="tabCtrl" pages="1"/>
+    </image>
   </displayList>
 </component>

@@ -4,10 +4,10 @@ function Main:onInit(obj)
     self.super.onInit(self,obj)
     self.mainBtnCtrl = self.view:GetController("mainBtnCtrl")
     self.mainIconShowCtrl = self.view:GetController("mainIconShowCtrl")
-    self.btnBag = self.view:GetChild("btnBag")
-    self.btnBag.onClick:Set(function ()
-        UIManager:OpenUI(UIDefine.UIPanel.Bag)
-    end)
+    -- self.btnBag = self.view:GetChild("btnBag")
+    -- self.btnBag.onClick:Set(function ()
+    --     UIManager:OpenUI(UIDefine.UIPanel.Bag)
+    -- end)
     self.btnBuilding = self.view:GetChild("btnBuilding")
     self.btnBuilding.onClick:Set(function ()
        if self.mainBtnCtrl.selectedIndex == 0 then
@@ -30,6 +30,7 @@ function Main:onInit(obj)
     	self.btnMains[i] = self.view:GetChild("btnMain"..i)
     	if i == 1 then
     		self.btnMains[i].onClick:Set(function ()
+    			self.mainBtnCtrl.selectedIndex = 0
     			self.mainIconShowCtrl.selectedIndex = 1
     			UIManager:OpenUI(UIDefine.UIPanel.UIDetails)
     		end)

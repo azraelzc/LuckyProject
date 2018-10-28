@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="348,150">
+  <displayList>
+    <image id="n0_j9ma" name="n0" src="j9mab" fileName="Images/headBg.png" xy="0,0"/>
+    <text id="n1_j9ma" name="n1" xy="151,75" size="49,25" fontSize="18" color="#f9f09a" text="Lv.99"/>
+    <text id="n2_j9ma" name="n2" xy="159,26" size="61,32" fontSize="25" color="#6cf661" text="9999"/>
+    <text id="n3_j9ma" name="n3" xy="218,26" size="68,32" fontSize="25" color="#f7f4d8" text="/9999"/>
+  </displayList>
+</component>

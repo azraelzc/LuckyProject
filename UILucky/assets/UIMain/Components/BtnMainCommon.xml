@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="100,100" extention="Button">
+<component size="99,116" extention="Button">
   <displayList>
-    <loader id="n0_u60z" name="icon" xy="10,0" size="80,80" url="ui://d0crf0h6u60z6" fill="scaleFree">
-      <relation target="" sidePair="width-width,height-height"/>
-    </loader>
-    <text id="n1_u60z" name="title" xy="0,73" size="100,27" fontSize="20" align="center" vAlign="middle" autoSize="none" text=""/>
+    <image id="n2_j9ma" name="icon" src="j9mad" fileName="Images/mainBtn.png" xy="0,0"/>
+    <text id="n1_u60z" name="title" xy="-1,17" size="100,89" font="Microsoft YaHei" fontSize="25" color="#faf8e6" align="center" vAlign="middle" autoSize="none" text="详情"/>
   </displayList>
   <Button/>
 </component>
