@@ -3,8 +3,31 @@
   <controller name="mainBtnCtrl" pages="0,,1," selected="0"/>
   <controller name="mainIconShowCtrl" pages="0,,1," selected="0"/>
   <displayList>
-    <image id="n17_j9ma" name="n17" src="j9ma7" fileName="Images/bg.png" xy="0,0"/>
-    <graph id="n15_u60z" name="playerClickArea" xy="0,0" size="1334,750" alpha="0" type="rect"/>
+    <image id="n17_j9ma" name="n17" src="j9ma7" fileName="Images/bg.png" xy="0,0" size="1334,750">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <graph id="n15_u60z" name="playerClickArea" xy="0,0" size="1334,750" alpha="0" type="rect">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <component id="n16_u60z" name="n16" src="u60zs9" fileName="Componets/MoneyBar.xml" pkg="ru6184xx" xy="345,8"/>
+    <component id="n23_j9ma" name="head" src="j9maf" fileName="Components/head.xml" xy="1,0">
+      <gearDisplay controller="mainIconShowCtrl" pages="0"/>
+    </component>
+    <image id="n19_j9ma" name="open" src="j9mac" fileName="Images/open.png" xy="1278,336">
+      <gearDisplay controller="mainIconShowCtrl" pages="0"/>
+      <relation target="" sidePair="right-right,middle-middle"/>
+    </image>
+    <component id="n21_j9ma" name="btnOther1" src="j9mae" fileName="Components/BtnOther.xml" xy="77,592">
+      <gearDisplay controller="mainIconShowCtrl" pages="0"/>
+      <relation target="" sidePair="left-left,bottom-bottom"/>
+      <Button title="回城" icon="ui://d0crf0h6j9ma8"/>
+    </component>
+    <component id="n22_j9ma" name="btnOther2" src="j9mae" fileName="Components/BtnOther.xml" xy="221,594">
+      <gearDisplay controller="mainIconShowCtrl" pages="0"/>
+      <relation target="" sidePair="left-left,bottom-bottom"/>
+      <Button title="打造" icon="ui://d0crf0h6j9ma9"/>
+    </component>
+    <image id="n24_sk7n" name="player" src="sk7ng" fileName="Images/7-2.png" xy="12,180" size="184,203"/>
     <component id="n11_u60z" name="btnMain1" src="u60z5" fileName="Components/BtnMainCommon.xml" xy="575,325">
       <gearXY controller="mainBtnCtrl" pages="0,1" values="575,325|444,133" tween="true"/>
       <Button title="详情"/>
@@ -22,21 +45,5 @@
       <Button title="移动"/>
     </component>
     <component id="n6_u60z" name="btnBuilding" src="u60z4" fileName="Components/BtnBuilding.xml" xy="430,225"/>
-    <component id="n16_u60z" name="n16" src="u60zs9" fileName="Componets/MoneyBar.xml" pkg="ru6184xx" xy="345,8"/>
-    <component id="n23_j9ma" name="head" src="j9maf" fileName="Components/head.xml" xy="1,0">
-      <gearDisplay controller="mainIconShowCtrl" pages="0"/>
-    </component>
-    <image id="n19_j9ma" name="open" src="j9mac" fileName="Images/open.png" xy="1278,336">
-      <gearDisplay controller="mainIconShowCtrl" pages="0"/>
-    </image>
-    <component id="n21_j9ma" name="btnOther1" src="j9mae" fileName="Components/BtnOther.xml" xy="77,592">
-      <gearDisplay controller="mainIconShowCtrl" pages="0"/>
-      <Button title="回城" icon="ui://d0crf0h6j9ma8"/>
-    </component>
-    <component id="n22_j9ma" name="btnOther2" src="j9mae" fileName="Components/BtnOther.xml" xy="221,594">
-      <gearDisplay controller="mainIconShowCtrl" pages="0"/>
-      <Button title="打造" icon="ui://d0crf0h6j9ma9"/>
-    </component>
-    <image id="n24_sk7n" name="player" src="sk7ng" fileName="Images/7-2.png" xy="12,180" size="184,203"/>
   </displayList>
 </component>

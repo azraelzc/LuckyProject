@@ -7,6 +7,7 @@
     <image id="hhv03" name="tab2.png" path="/Images/"/>
     <image id="hhv04" name="bg.png" path="/Images/" scale="9grid" scale9grid="165,218,13,27"/>
     <image id="lcqy6" name="talend.jpg" path="/Images/"/>
+    <image id="cztq7" name="buiding.jpg" path="/Images/"/>
   </resources>
   <publish name="UIDetails" path="..\client\Assets\AbAsset\UIRes\&amp;UIDetails"/>
 </packageDescription>
